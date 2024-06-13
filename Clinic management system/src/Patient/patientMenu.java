@@ -14,11 +14,17 @@ import javax.swing.ImageIcon;
 
 public class patientMenu extends JFrame{
 	patientMenu(){
-		ImageIcon image = new ImageIcon("patient.png");
+		ImageIcon image = new ImageIcon("src/Patient/patient.png");
 		
-		JLabel label = new JLabel();
-		label.setText("This is patient menu.");
-		label.setIcon(image);
+		JLabel label1 = new JLabel();
+		label1.setText("This is patient menu.");
+		label1.setIcon(image);
+		label1.setOpaque(false);
+		label1.setHorizontalTextPosition(JLabel.CENTER);
+		label1.setVerticalTextPosition(JLabel.BOTTOM);
+		label1.setVerticalAlignment(JLabel.CENTER);
+		label1.setHorizontalAlignment(JLabel.CENTER);
+		
 		
 		JFrame frame = new JFrame();
 		frame.setTitle("This is Java");
@@ -26,6 +32,6 @@ public class patientMenu extends JFrame{
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.add(label);
+		frame.add(label1);
 	}
 }

@@ -8,6 +8,13 @@ package Doctor;
  *
  * @author pangz
  */
-public class NewClass {
+import Patient.*;
+public class NewClass extends frame{
+    
+    String message;
+    public NewClass() {
+    
+        System.out.println(message);
+    }
     
 }

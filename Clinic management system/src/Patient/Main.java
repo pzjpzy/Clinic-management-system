@@ -9,11 +9,14 @@ package Patient;
  * @author pangz
  */
 import Doctor.*;
+import Doctor.frame;
 
 public class Main {
     public static void main(String[] args) {
-    	patientMenu main = new patientMenu();
-//        NewClass newClass = new NewClass();
+//    	patientMenu main = new patientMenu();
+//        NewClass newClass = new NewClass("Admin");
+        frame frame = new frame();
         
     }
+    
 }

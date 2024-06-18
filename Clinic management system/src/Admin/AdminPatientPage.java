@@ -1,5 +1,7 @@
 package Admin;
 
+import java.awt.Color;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -16,6 +18,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
      */
     public AdminPatientPage() {
         initComponents();
+        setBackground(Color.black);
     }
 
     /**
@@ -35,6 +38,8 @@ public class AdminPatientPage extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 0, 102));
 
         WalkinButton.setText("Appointment (Walkin)");
         WalkinButton.addActionListener(new java.awt.event.ActionListener() {

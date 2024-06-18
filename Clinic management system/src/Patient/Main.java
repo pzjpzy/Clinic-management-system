@@ -23,6 +23,15 @@ public class Main {
 //        NewClass newClass = new NewClass("Admin");
 //        frame frame = new frame();
 
+
+        frame frame = new frame();
+//        Appointment ap = new Appointment();
+//          nAppointment nap = new nAppointment();
+//        NewClass newClass = new NewClass();
+
+//        NewClass newClass = new NewClass("Admin");
+        
+
         
     }
     

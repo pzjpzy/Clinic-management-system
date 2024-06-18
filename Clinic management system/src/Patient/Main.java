@@ -14,14 +14,13 @@ import Admin.*;
 public class Main {
     public static void main(String[] args) {
 //    	patientMenu main = new patientMenu();
-//        frame frame = new frame();
-        AdminPatientPage hello = new AdminPatientPage();
-        hello.setVisible(true);
+        frame frame = new frame();
 //        Appointment ap = new Appointment();
 //          nAppointment nap = new nAppointment();
 //        NewClass newClass = new NewClass();
+
 //        NewClass newClass = new NewClass("Admin");
-//        frame frame = new frame();
+        
         
     }
     

@@ -7,22 +7,19 @@ package Doctor;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
  *
  * @author pangz
  */
-public class frame extends JFrame implements ActionListener {
+public class templatePanel extends JFrame {
     JButton logout;
-    public frame() {
+    templatePanel(){
         ImageIcon image = new ImageIcon("src/Patient/patient.png");
 
         Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -53,7 +50,7 @@ public class frame extends JFrame implements ActionListener {
         logout.setBounds(1300,25,200,100);
         logout.setIcon(loImage);
 //        logout.addActionListener(this);
-        logout.addActionListener(this);
+
         logout.setFocusable(false);
         logout.setText("Log Out");
         logout.setFont(new Font("My Boli",Font.PLAIN,25));
@@ -82,33 +79,8 @@ public class frame extends JFrame implements ActionListener {
         panel.setBounds(0,0,1536,864);
         panel.setLayout(null);
         panel.add(banner);
-
-
-        setTitle("Patient Menu");
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setResizable(false);
-        setLayout(null);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         add(panel);
-        
-
-        
-        
-        }
-
-    @Override
-        public void actionPerformed(ActionEvent e) {
-            if(e.getSource()==logout){
-            // Remove all components from the content pane
-            getContentPane().removeAll();
-            //add all components back
-            getContentPane().add(new patientmenuPanel());
-            // Revalidate and repaint to update the UI
-            getContentPane().revalidate();
-            getContentPane().repaint();
-            
-            }
-        }
-                  
-   }
+        setBounds(0,0,1536,864);
+        setLayout(null);
+    }
+}

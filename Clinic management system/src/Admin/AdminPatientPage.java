@@ -18,7 +18,6 @@ public class AdminPatientPage extends javax.swing.JFrame {
      */
     public AdminPatientPage() {
         initComponents();
-        setBackground(Color.black);
     }
 
     /**

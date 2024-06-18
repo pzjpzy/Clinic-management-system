@@ -8,6 +8,12 @@ package Patient;
  *
  * @author pangz
  */
-public class NewClass {
-    
+import Doctor.*;
+
+public class Main {
+    public static void main(String[] args) {
+    	patientMenu main = new patientMenu();
+//        NewClass newClass = new NewClass();
+        
+    }
 }

@@ -10,7 +10,7 @@ package Patient;
  */
 import Doctor.*;
 import Doctor.frame;
-
+import Admin.*;
 public class Main {
     public static void main(String[] args) {
 //    	patientMenu main = new patientMenu();

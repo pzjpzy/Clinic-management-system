@@ -19,7 +19,7 @@ public class Main {
 //          nAppointment nap = new nAppointment();
 //        NewClass newClass = new NewClass();
 //            test t = new test();
-            test2 t2 = new test2();
+//            test2 t2 = new test2();
 //        NewClass newClass = new NewClass("Admin");
 //        frame frame = new frame();
 

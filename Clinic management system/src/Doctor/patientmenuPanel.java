@@ -7,8 +7,10 @@ package Doctor;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -19,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class patientmenuPanel extends JPanel{
     JButton logout;
-    patientmenuPanel(){
+    patientmenuPanel(JFrame frame){
         ImageIcon image = new ImageIcon("src/Patient/patient.png");	
             Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(resizedUserImage);
@@ -104,11 +106,24 @@ public class patientmenuPanel extends JPanel{
                 layer.add(subbox,Integer.valueOf(1));
                 layer.add(appoint,Integer.valueOf(2));
                 layer.add(mRecord,Integer.valueOf(3));
+                
+                JButton testBtn = new JButton("Delete all");
+                testBtn.addActionListener((ActionEvent e)->{
+                    frame.remove(this);
+                    
+                    NewJPanel panel = new NewJPanel(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();
+                    System.out.println("hello");
+                });
+                testBtn.setBounds(0, 750, 200, 50);
         
-        setBounds(0,0,1536,864);
+        setBounds(0,0,frame.getWidth(),frame.getHeight());
         setLayout(null);
         add(banner);
         add(layer);
+        add(testBtn);
         
         setBounds(0,0,1536,864);
         

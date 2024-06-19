@@ -61,6 +61,15 @@ public class patientmenuPanel extends JPanel{
                 logout.setFont(new Font("My Boli",Font.PLAIN,25));
                 logout.setFont(new Font("My Boli",Font.PLAIN,25));
                 logout.setBackground(Color.white);
+                logout.addActionListener((ActionEvent e)->{
+                    frame.remove(this);
+                    
+                    NewJPanel panel = new NewJPanel(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();
+                    System.out.println("hello");
+                });
                 
                 JButton appoint = new JButton(); //appointment button
                 appoint.setText("Appointment");

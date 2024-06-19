@@ -104,11 +104,11 @@ public class frame extends JFrame implements ActionListener {
             // Remove all components from the content pane
             getContentPane().removeAll();
             //add all components back
-            getContentPane().add(new Appointment(this));
+            getContentPane().add(new patientmenuPanel(this));
             // Revalidate and repaint to update the UI
             getContentPane().revalidate();
             getContentPane().repaint();
             }
         }
-       
+        
    }

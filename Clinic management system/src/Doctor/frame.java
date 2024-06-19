@@ -4,6 +4,7 @@
  */
 package Doctor;
 
+import Patient.Appointment;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -47,7 +48,6 @@ public class frame extends JFrame implements ActionListener {
             // Revalidate and repaint to update the UI
             getContentPane().revalidate();
             getContentPane().repaint();
-            
             }
         }
         

@@ -4,7 +4,6 @@
  */
 package Doctor;
 
-import Patient.login;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -83,7 +82,7 @@ public class doctorMainPage extends JPanel {
         appoint.setBackground(Color.white);
 
         JButton mRecord = new JButton(); //button 2
-        mRecord.setText("Update Patient Info");
+        mRecord.setText("Upload Daily Schedule");
         mRecord.setVerticalTextPosition(JButton.BOTTOM);
         mRecord.setHorizontalTextPosition(JButton.CENTER);
         mRecord.setIcon(mrImage);

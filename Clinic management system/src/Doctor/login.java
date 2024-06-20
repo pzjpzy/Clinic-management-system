@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Patient;
+package Doctor;
 
-import Doctor.doctorMainPage;
-import Doctor.patientmenuPanel;
 import java.awt.Image;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.ImageIcon;
@@ -196,6 +195,7 @@ public class login extends javax.swing.JPanel {
         
         try{
             FileReader fr = new FileReader("logincredential.txt");
+            
             BufferedReader br  = new BufferedReader(fr);
 
             String line = null;

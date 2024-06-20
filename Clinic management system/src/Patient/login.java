@@ -212,7 +212,7 @@ public class login extends javax.swing.JPanel {
                     wrongcredential = false;
                 }
                 else if(name.equals(values[0]) && password.equals(values[1]) && values[2].equals("Patient")){
-                    patientmenuPanel panel = new patientmenuPanel(frame);
+                    patientMenu panel = new patientMenu(frame);
                     frame.remove(this);
                     frame.add(panel);
                     frame.revalidate();

@@ -4,7 +4,6 @@
  */
 package Patient;
 
-import Doctor.NewJPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -22,7 +21,7 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  *
  * @author pangz
  */
-public class Appointment extends JPanel implements ActionListener{ 
+public class Appointment extends JPanel { 
     JButton home;
 
     public Appointment(JFrame frame){

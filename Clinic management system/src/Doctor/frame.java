@@ -4,17 +4,11 @@
  */
 package Doctor;
 
-import Patient.Appointment;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Image;
+import Patient.login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
@@ -24,9 +18,10 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class frame extends JFrame implements ActionListener {
     JButton logout;
     public frame() {
-        patientmenuPanel panel = new patientmenuPanel(this);
+//        patientmenuPanel panel = new patientmenuPanel(this);
+        login panel  = new login(this);
         
-        setTitle("Patient Menu");
+        setTitle("Clinic Management System");
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -40,15 +35,16 @@ public class frame extends JFrame implements ActionListener {
 
     @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource()==logout){
-            // Remove all components from the content pane
-            getContentPane().removeAll();
-            //add all components back
-            getContentPane().add(new patientmenuPanel(this));
-            // Revalidate and repaint to update the UI
-            getContentPane().revalidate();
-            getContentPane().repaint();
-            }
+//            if(e.getSource()==jButton1){
+//            // Remove all components from the content pane
+//            getContentPane().removeAll();
+//            //add all components back
+//            getContentPane().add(new doctorMainPage(this));
+//            // Revalidate and repaint to update the UI
+//            getContentPane().revalidate();
+//            getContentPane().repaint();
+//            }
+            
         }
         
    }

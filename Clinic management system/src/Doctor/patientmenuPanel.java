@@ -4,6 +4,7 @@
  */
 package Doctor;
 
+import Patient.login;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -21,7 +22,7 @@ import javax.swing.JPanel;
  */
 public class patientmenuPanel extends JPanel{
     JButton logout;
-    patientmenuPanel(JFrame frame){
+    public patientmenuPanel(JFrame frame){
         ImageIcon image = new ImageIcon("src/Patient/patient.png");	
             Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(resizedUserImage);
@@ -37,7 +38,7 @@ public class patientmenuPanel extends JPanel{
         
                 
 		JLabel label1 = new JLabel(); //welcome user
-		label1.setText("Welcome, XXX");
+		label1.setText("Welcome, Patient");
 		label1.setIcon(resizedIcon);
 		label1.setOpaque(false);
                 label1.setFont(new Font("My Boli",Font.PLAIN,30));
@@ -50,7 +51,7 @@ public class patientmenuPanel extends JPanel{
                 
                 JPanel subban = new JPanel(); // box for welcome user
                 subban.setBackground(new Color(92,201,205));
-                subban.setBounds(30,20,350,140);
+                subban.setBounds(30,20,400,140);
                 subban.add(label1);
                 
                 JButton logout = new JButton(); //logout button
@@ -64,11 +65,10 @@ public class patientmenuPanel extends JPanel{
                 logout.addActionListener((ActionEvent e)->{
                     frame.remove(this);
                     
-                    NewJPanel panel = new NewJPanel(frame);
+                    login panel = new login(frame);
                     frame.add(panel);
                     frame.revalidate();
                     frame.repaint();
-                    System.out.println("hello");
                 });
                 
                 JButton appoint = new JButton(); //appointment button
@@ -116,23 +116,13 @@ public class patientmenuPanel extends JPanel{
                 layer.add(appoint,Integer.valueOf(2));
                 layer.add(mRecord,Integer.valueOf(3));
                 
-                JButton testBtn = new JButton("Delete all");
-                testBtn.addActionListener((ActionEvent e)->{
-                    frame.remove(this);
-                    
-                    NewJPanel panel = new NewJPanel(frame);
-                    frame.add(panel);
-                    frame.revalidate();
-                    frame.repaint();
-                    System.out.println("hello");
-                });
-                testBtn.setBounds(0, 750, 200, 50);
+                
         
         setBounds(0,0,frame.getWidth(),frame.getHeight());
         setLayout(null);
         add(banner);
         add(layer);
-        add(testBtn);
+
         
         setBounds(0,0,1536,864);
         

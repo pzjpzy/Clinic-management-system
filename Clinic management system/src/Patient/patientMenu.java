@@ -11,6 +11,7 @@ package Patient;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,8 +19,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 
-public class patientMenu extends JFrame{
-	patientMenu(){
+public class patientMenu extends JPanel{
+	patientMenu(JFrame frame){
             ImageIcon image = new ImageIcon("src/Patient/patient.png");	
             Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(resizedUserImage);
@@ -59,6 +60,14 @@ public class patientMenu extends JFrame{
                 logout.setFont(new Font("My Boli",Font.PLAIN,25));
                 logout.setFont(new Font("My Boli",Font.PLAIN,25));
                 logout.setBackground(Color.white);
+                logout.addActionListener((ActionEvent e)->{
+                    frame.remove(this);
+
+                    login panel = new login(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();
+                });
                 
                 JButton appoint = new JButton(); //appointment button
                 appoint.setText("Appointment");
@@ -105,10 +114,9 @@ public class patientMenu extends JFrame{
                 layer.add(appoint,Integer.valueOf(2));
                 layer.add(mRecord,Integer.valueOf(3));
 		
-		JFrame frame = new JFrame(); //the frame
+
 		frame.setTitle("Patient Menu");
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 frame.add(banner);

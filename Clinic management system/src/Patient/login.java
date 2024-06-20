@@ -195,7 +195,7 @@ public class login extends javax.swing.JPanel {
         
         
         try{
-            FileReader fr = new FileReader("C:\\Users\\pangz\\OneDrive - Asia Pacific University\\Documents\\Java Programming\\Assignment\\Clinic-management-system\\Clinic management system\\src\\Doctor\\logincredential.txt");
+            FileReader fr = new FileReader("logincredential.txt");
             BufferedReader br  = new BufferedReader(fr);
 
             String line = null;
@@ -210,7 +210,7 @@ public class login extends javax.swing.JPanel {
                     wrongcredential = false;
                 }
                 else if(name.equals(values[0]) && password.equals(values[1]) && values[2].equals("Patient")){
-                    patientmenuPanel panel = new patientmenuPanel(frame);
+                    patientMenu panel = new patientMenu(frame);
                     frame.remove(this);
                     frame.add(panel);
                     frame.revalidate();

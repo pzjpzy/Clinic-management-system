@@ -114,19 +114,6 @@ public class Appointment extends JPanel implements ActionListener{
             add(banner);
             add(layer);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==home){
-//        // Remove all components from the content pane
-//        getContentPane().removeAll();
-//        //add all components back
-//        getContentPane().add(new NewJPanel());
-//        // Revalidate and repaint to update the UI
-//        getContentPane().revalidate();
-//        getContentPane().repaint();
-        }
-    }
-    
-}
+
 
 

@@ -114,6 +114,6 @@ public class Appointment extends JPanel implements ActionListener{
             add(banner);
             add(layer);
     }
-
+}
 
 

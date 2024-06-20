@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Doctor;
+package Patient;
 
+import Doctor.doctorMainPage;
+import Doctor.patientmenuPanel;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;

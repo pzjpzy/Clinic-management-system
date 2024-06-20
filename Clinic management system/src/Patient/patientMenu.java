@@ -3,8 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Patient;
-
-/**
+import Doctor.login;/**
  *
  * @author pangz
  */
@@ -20,7 +19,7 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 
 public class patientMenu extends JPanel{
-	patientMenu(JFrame frame){
+	public patientMenu(JFrame frame){
             ImageIcon image = new ImageIcon("src/Patient/patient.png");	
             Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(resizedUserImage);

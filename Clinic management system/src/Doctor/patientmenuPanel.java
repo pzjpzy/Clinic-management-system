@@ -4,11 +4,14 @@
  */
 package Doctor;
 
+import Patient.login;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -19,7 +22,7 @@ import javax.swing.JPanel;
  */
 public class patientmenuPanel extends JPanel{
     JButton logout;
-    patientmenuPanel(){
+    public patientmenuPanel(JFrame frame){
         ImageIcon image = new ImageIcon("src/Patient/patient.png");	
             Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
             ImageIcon resizedIcon = new ImageIcon(resizedUserImage);
@@ -35,7 +38,7 @@ public class patientmenuPanel extends JPanel{
         
                 
 		JLabel label1 = new JLabel(); //welcome user
-		label1.setText("Welcome, XXX");
+		label1.setText("Welcome, Patient");
 		label1.setIcon(resizedIcon);
 		label1.setOpaque(false);
                 label1.setFont(new Font("My Boli",Font.PLAIN,30));
@@ -48,7 +51,7 @@ public class patientmenuPanel extends JPanel{
                 
                 JPanel subban = new JPanel(); // box for welcome user
                 subban.setBackground(new Color(92,201,205));
-                subban.setBounds(30,20,350,140);
+                subban.setBounds(30,20,400,140);
                 subban.add(label1);
                 
                 JButton logout = new JButton(); //logout button
@@ -59,6 +62,14 @@ public class patientmenuPanel extends JPanel{
                 logout.setFont(new Font("My Boli",Font.PLAIN,25));
                 logout.setFont(new Font("My Boli",Font.PLAIN,25));
                 logout.setBackground(Color.white);
+                logout.addActionListener((ActionEvent e)->{
+                    frame.remove(this);
+                    
+                    login panel = new login(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();
+                });
                 
                 JButton appoint = new JButton(); //appointment button
                 appoint.setText("Appointment");
@@ -104,11 +115,14 @@ public class patientmenuPanel extends JPanel{
                 layer.add(subbox,Integer.valueOf(1));
                 layer.add(appoint,Integer.valueOf(2));
                 layer.add(mRecord,Integer.valueOf(3));
+                
+                
         
-        setBounds(0,0,1536,864);
+        setBounds(0,0,frame.getWidth(),frame.getHeight());
         setLayout(null);
         add(banner);
         add(layer);
+
         
         setBounds(0,0,1536,864);
         

@@ -19,7 +19,7 @@ import javax.swing.JPanel;
  */
 public class templatePanel extends JFrame {
     JButton logout;
-    templatePanel(){
+    public templatePanel(){
         ImageIcon image = new ImageIcon("src/Patient/patient.png");
 
         Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -49,8 +49,6 @@ public class templatePanel extends JFrame {
         logout = new JButton(); //logout button
         logout.setBounds(1300,25,200,100);
         logout.setIcon(loImage);
-//        logout.addActionListener(this);
-
         logout.setFocusable(false);
         logout.setText("Log Out");
         logout.setFont(new Font("My Boli",Font.PLAIN,25));
@@ -78,6 +76,7 @@ public class templatePanel extends JFrame {
         JPanel panel = new JPanel();
         panel.setBounds(0,0,1536,864);
         panel.setLayout(null);
+        panel.add(box);
         panel.add(banner);
         add(panel);
         setBounds(0,0,1536,864);

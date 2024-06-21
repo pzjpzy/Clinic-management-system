@@ -204,6 +204,7 @@ public class login extends javax.swing.JPanel {
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
                 if(name.equals(values[0]) && password.equals(values[1]) && values[2].equals("Doctor")){
+                    user.update(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
                     doctorMainPage panel = new doctorMainPage(frame);
                     frame.remove(this);
                     frame.add(panel);
@@ -212,6 +213,7 @@ public class login extends javax.swing.JPanel {
                     wrongcredential = false;
                 }
                 else if(name.equals(values[0]) && password.equals(values[1]) && values[2].equals("Patient")){
+                    user.update(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
                     patientMenu panel = new patientMenu(frame);
                     frame.remove(this);
                     frame.add(panel);
@@ -220,6 +222,7 @@ public class login extends javax.swing.JPanel {
                     wrongcredential = false;
                 }
                 else if(name.equals(values[0]) && password.equals(values[1]) && values[2].equals("Admin")){
+                    user.update(values[0], values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
 //                    patientmenuPanel panel = new patientmenuPanel(frame);
 //                    frame.remove(this);
 //                    frame.add(panel);

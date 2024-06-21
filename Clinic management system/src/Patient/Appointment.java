@@ -61,13 +61,21 @@ public class Appointment extends JPanel {
             home.setFont(new Font("My Boli",Font.PLAIN,25));
             home.setFont(new Font("My Boli",Font.PLAIN,25));
             home.setBackground(Color.white);
+                home.addActionListener((ActionEvent e)->{ // go to patientMenu
+                    frame.remove(this);
+
+                    patientMenu panel = new patientMenu(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();    
+                });
 
             JButton appoint = new JButton(); //appointment button
             appoint.setText("Cancel Appointment");
             appoint.setVerticalTextPosition(JButton.BOTTOM);
             appoint.setHorizontalTextPosition(JButton.CENTER);
             appoint.setIcon(apImage);
-            appoint.setBounds(300,300,400,400);
+            appoint.setBounds(300,150,400,400);
             appoint.setFont(new Font("My Boli",Font.PLAIN,25));
             appoint.setFocusable(false);
             appoint.setBackground(Color.white);
@@ -77,7 +85,7 @@ public class Appointment extends JPanel {
             mRecord.setVerticalTextPosition(JButton.BOTTOM);
             mRecord.setHorizontalTextPosition(JButton.CENTER);
             mRecord.setIcon(mrImage);
-            mRecord.setBounds(800,300,400,400);
+            mRecord.setBounds(800,150,400,400);
             mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
             mRecord.setFocusable(false);
             mRecord.setBackground(Color.white);
@@ -92,7 +100,7 @@ public class Appointment extends JPanel {
 
             JPanel subbox = new JPanel();
             subbox.setBackground(new Color(162,229,221));
-            subbox.setBounds(200,200,1100,600);
+            subbox.setBounds(200,50,1100,600);
 
 
             JPanel box = new JPanel(); //below box
@@ -107,11 +115,11 @@ public class Appointment extends JPanel {
             layer.add(appoint,Integer.valueOf(2));
             layer.add(mRecord,Integer.valueOf(3));
 
-
-            setBounds(0, 0, 1536, 864);
-            setLayout(null);
             add(banner);
             add(layer);
+            setBounds(0, 0, 1536, 864);
+            setLayout(null);
+
     }
 }
 

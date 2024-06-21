@@ -16,7 +16,6 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  * @author pangz
  */
 public class frame extends JFrame implements ActionListener {
-    JButton logout;
     public frame() {
 //        patientmenuPanel panel = new patientmenuPanel(this);
         login panel  = new login(this);

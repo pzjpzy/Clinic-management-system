@@ -39,12 +39,25 @@ public class medicalR extends JPanel{
                     String ndatarow[] = {values[0],values[1],values[2],values[3],values[4],values[5],values[6],values[7]};
                     textArea.setText(
                         "\n"+   
-                        "\s"+"\s"+"Disease : "+ndatarow[2]+"\n"+
-                        "\s"+"\s"+"Medicine : "+ndatarow[3]+"\n"+
-                        "\s"+"\s"+"Allergies : "+ndatarow[4]+"\n"+
-                        "\s"+"\s"+"Date : "+ndatarow[5]+"\n"+
-                        "\s"+"\s"+"Vitals : "+ndatarow[6]+"\n"+
-                        "\s"+"\s"+"Follow-up Appointment : "+ndatarow[7]+"\n"                
+                        "       "+"Patient Info  "+"\n"+
+                        "\n"+   
+                        "           "+"Name : "+ndatarow[0]+"\n"+
+                        "           "+"IC Number : "+ndatarow[1]+"\n"+
+                        "\n"+   
+                        "       "+"Medical History "+"\n"+
+                        "\n"+   
+                        "           "+"Disease : "+ndatarow[2]+"\n"+
+                        "           "+"Medicine : "+ndatarow[3]+"\n"+
+                        "           "+"Allergies : "+ndatarow[4]+"\n"+
+                        "\n"+   
+                        "       "+"Health Information  "+"\n"+
+                        "\n"+   
+                        "           "+"Date : "+ndatarow[5]+"\n"+
+                        "           "+"Vitals : "+ndatarow[6]+"\n"+
+                        "\n"+   
+                        "       "+"Next Step  "+"\n"+
+                        "\n"+   
+                        "           "+"Follow-up Appointment : "+ndatarow[7]+"\n"                
                     );  
                                 
                 }

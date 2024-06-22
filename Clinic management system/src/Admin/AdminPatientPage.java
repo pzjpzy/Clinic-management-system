@@ -9,8 +9,12 @@ package Admin;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,14 +24,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AdminPatientPage extends javax.swing.JFrame {
     private DefaultTableModel container = new DefaultTableModel();
-    private String PatientcolumnName[] = {"Name", "Username", "Password", "Gender", "IC Number", "Phone Number", "Blood Type", "Role", "ID"};
+    private String PatientcolumnName[] = {"Name", "Username", "Password", "Gender", "IC Number", "Phone Number", "Blood Type", "Role"};
     
    
     public AdminPatientPage() throws IOException{
         container.setColumnIdentifiers(PatientcolumnName);
         
         try{
-            FileReader fr = new FileReader("C:\\Users\\User\\Java\\PatientInformation.txt");
+            FileReader fr = new FileReader("PatientInformation.txt");
             BufferedReader br = new BufferedReader(fr);
             
             String line = null;
@@ -417,10 +421,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      
-     try{
-         
-        
-     String name = FullName.getText();
+    String name = FullName.getText();
      String username = UserName.getText();
      String password = pass.getText();
      String gend = (String)gender.getSelectedItem();
@@ -428,15 +429,46 @@ public class AdminPatientPage extends javax.swing.JFrame {
      int PhoneNumber = Integer.parseInt(phonenumber.getText());
      String BloodType = (String)blood.getSelectedItem();
      String Role = (String)role.getSelectedItem();
-     
-     String PatientInfo[] = {name, username, password, gend, String.valueOf(ICNumber), String.valueOf(PhoneNumber), BloodType, Role };
-     
-     container.addRow(PatientInfo);
-    }catch(NumberFormatException e){
-        JOptionPane.showMessageDialog(this, "Please enter the correct data", "Error", JOptionPane.ERROR_MESSAGE);
+
+     try{
+
+         FileReader fr = new FileReader("PatientInformation.txt");
+            BufferedReader br  = new BufferedReader(fr);
+
+            String table[] = new String[100];
+            String line = null;
+            int row = 0;
+
+
+            while((line = br.readLine()) != null){
+                String values[] = line.split(",");
+
+                    table [row] = line;
+                    row ++;
+            }
+            br.close();
+            fr.close();
+
+            FileWriter fw = new FileWriter("PatientInformation.txt");
+            String sentence = name+","+username+","+  password+","+  gend+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+  BloodType+","+  Role + "\n" ;
+
+            for(int i=0; i<row; i++){
+                if (table[i] != null){
+                    fw.append(table[i]+"\n");
+                }
+                fw.append(sentence);
+            }
+
+
+            fw.close();
+        }catch(IOException ex) {
+                System.out.println("Some error occured");
+        }catch(NumberFormatException e){
         
-    }
-     
+        JOptionPane.showMessageDialog(this, "Please enter the correct data!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+     String PatientData[] = {name, username, password, gend, String.valueOf(ICNumber),  String.valueOf(PhoneNumber), BloodType, Role } ;
+       container.addRow(PatientData);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void FullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameActionPerformed
@@ -491,9 +523,16 @@ public class AdminPatientPage extends javax.swing.JFrame {
      * @throws java.io.IOException
      */
     public static void main(String args[]) {
-        System.out.println("h");
         
-            
+             java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new AdminPatientPage().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(AdminPatientPage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
      
     }
 

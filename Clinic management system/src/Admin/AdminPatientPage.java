@@ -1,16 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Admin;
 
-import java.util.*;
+package Data;
+
+
+// * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+// * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+
+
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+package Admin;
 /**
  *
  * @author User
@@ -20,7 +25,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
     private String PatientcolumnName[] = {"Name", "Username", "Password", "Gender", "IC Number", "Phone Number", "Blood Type", "Role", "ID"};
     
    
-    public AdminPatientPage() {
+    public AdminPatientPage() throws IOException{
         container.setColumnIdentifiers(PatientcolumnName);
         
         try{
@@ -449,6 +454,12 @@ public class AdminPatientPage extends javax.swing.JFrame {
     }//GEN-LAST:event_genderActionPerformed
 
     private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
+        if(FullName.getText().isEmpty()||UserName.getText().isEmpty()||pass.getText().isEmpty()||icnum.getText().isEmpty()||phonenumber.getText().isEmpty())
+        {
+        JOptionPane.showMessageDialog(this,"Missing Information");
+        
+        }else{
+        try{
         int row = jTable2.getSelectedRow();
         
         String name = String.valueOf(container.getValueAt(row, 0));
@@ -468,22 +479,24 @@ public class AdminPatientPage extends javax.swing.JFrame {
         phonenumber.getText();
         blood.getSelectedItem();
         role.getSelectedItem();
-    }//GEN-LAST:event_jTable2MouseReleased
 
+            }catch(Exception Ex){
+
+
+                }
+            }
+        }
+    }//GEN-LAST:event_jTable2MouseReleased
+    
     /**
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String args[]) throws IOException {
+    public static void main(String args[]) {
        
         
             
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AdminPatientPage().setVisible(true);
-            }
-        });
+     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -524,4 +537,6 @@ public class AdminPatientPage extends javax.swing.JFrame {
     private javax.swing.JTextField phonenumber;
     private javax.swing.JComboBox<String> role;
     // End of variables declaration//GEN-END:variables
+
+    }
 }

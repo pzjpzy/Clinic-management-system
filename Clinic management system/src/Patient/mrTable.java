@@ -146,7 +146,7 @@ public class mrTable extends javax.swing.JPanel {
         user.date = String.valueOf(container.getValueAt(row, 2));
         user.followup = String.valueOf(container.getValueAt(row, 3));
         
-        System.out.println(user.disease+user.followup);
+        
 
         
     }//GEN-LAST:event_jTable1MouseReleased

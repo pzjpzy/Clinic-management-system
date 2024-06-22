@@ -77,7 +77,6 @@ public class appointmentHistory extends javax.swing.JPanel {
                 if(search == true){
                     if(user.equals(values[1])){
                     container.addRow(values);
-                    System.out.println(date);
                     }
                 
                 }else{

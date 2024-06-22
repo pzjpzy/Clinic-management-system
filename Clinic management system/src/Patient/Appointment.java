@@ -79,6 +79,14 @@ public class Appointment extends JPanel {
             appoint.setFont(new Font("My Boli",Font.PLAIN,25));
             appoint.setFocusable(false);
             appoint.setBackground(Color.white);
+            appoint.addActionListener((ActionEvent e)->{ // go to patientMenu
+                frame.remove(this);
+
+                cancelAppointmentV2 panel = new cancelAppointmentV2(frame);
+                frame.add(panel);
+                frame.revalidate();
+                frame.repaint();    
+            });
 
             JButton mRecord = new JButton();
             mRecord.setText("Make Appointment");

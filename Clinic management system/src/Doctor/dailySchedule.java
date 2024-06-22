@@ -4,16 +4,31 @@
  */
 package Doctor;
 
+import Patient.patientMenu;
+import Patient.user;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JFrame;
+
 /**
  *
  * @author pangz
  */
-public class dailySchedule extends javax.swing.JPanel {
 
+public class dailySchedule extends javax.swing.JPanel {
+    JFrame frame;
+    boolean selectall = false;
+    boolean noresult;
     /**
      * Creates new form dailySchedule
+     * @param frame
      */
-    public dailySchedule() {
+    public dailySchedule(JFrame frame) {
+        this.frame = frame;
         setBounds(0,0,1536,864);
         
         initComponents();
@@ -39,6 +54,7 @@ public class dailySchedule extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jCheckBox8 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -47,6 +63,7 @@ public class dailySchedule extends javax.swing.JPanel {
         jLabel1.setText("Upload daily schedule");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jCheckBox1.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox1.setText("9.00-10.00");
         jCheckBox1.setFocusable(false);
@@ -58,6 +75,7 @@ public class dailySchedule extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox2.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox2.setText("10.00-11.00");
         jCheckBox2.setFocusable(false);
@@ -69,6 +87,7 @@ public class dailySchedule extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox3.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox3.setText("11.00-12.00");
         jCheckBox3.setFocusable(false);
@@ -80,6 +99,7 @@ public class dailySchedule extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox4.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox4.setText("12.00-1.00");
         jCheckBox4.setFocusable(false);
@@ -91,6 +111,7 @@ public class dailySchedule extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox5.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox5.setText("2.00-3.00");
         jCheckBox5.setFocusable(false);
@@ -102,6 +123,7 @@ public class dailySchedule extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox6.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox6.setText("3.00-4.00");
         jCheckBox6.setFocusable(false);
@@ -113,6 +135,7 @@ public class dailySchedule extends javax.swing.JPanel {
             }
         });
 
+        jCheckBox7.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox7.setText("Select All");
         jCheckBox7.setFocusable(false);
@@ -131,6 +154,7 @@ public class dailySchedule extends javax.swing.JPanel {
         jLabel2.setText("Rest");
         jLabel2.setOpaque(true);
 
+        jCheckBox8.setBackground(new java.awt.Color(255, 255, 255));
         jCheckBox8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jCheckBox8.setText("4.00-5.00");
         jCheckBox8.setFocusable(false);
@@ -150,6 +174,18 @@ public class dailySchedule extends javax.swing.JPanel {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setBackground(java.awt.Color.white);
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Cancel");
+        jLabel3.setFocusable(false);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel3MouseReleased(evt);
             }
         });
 
@@ -177,12 +213,12 @@ public class dailySchedule extends javax.swing.JPanel {
                                     .addComponent(jCheckBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(8, 8, 8))
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(127, 127, 127)
-                                .addComponent(jCheckBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(49, 49, 49))))
         );
@@ -214,7 +250,9 @@ public class dailySchedule extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(103, 103, 103))))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -244,7 +282,27 @@ public class dailySchedule extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
-        // TODO add your handling code here:
+        if(selectall == false){
+            jCheckBox1.setSelected (true);
+            jCheckBox2.setSelected (true);
+            jCheckBox3.setSelected (true);
+            jCheckBox4.setSelected (true);
+            jCheckBox5.setSelected (true);
+            jCheckBox6.setSelected (true);
+            jCheckBox8.setSelected (true);
+            selectall = true;
+        }else{
+            jCheckBox1.setSelected (false);
+            jCheckBox2.setSelected (false);
+            jCheckBox3.setSelected (false);
+            jCheckBox4.setSelected (false);
+            jCheckBox5.setSelected (false);
+            jCheckBox6.setSelected (false);
+            jCheckBox8.setSelected (false);
+            selectall = false;
+        }
+        
+        
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
@@ -252,8 +310,70 @@ public class dailySchedule extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBox8ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        try{
+            //update file content
+            
+
+            FileReader fr = new FileReader("dailyAppointment.txt");
+            BufferedReader br  = new BufferedReader(fr);
+
+            String table[] = new String[100];
+            String line = null;
+            int row = 0;
+            
+            
+            while((line = br.readLine()) != null){
+                String values[] = line.split(",");
+
+
+                if(user.name.equals(values[0]) && date.equals(values[1])){ //if got result
+                    noresult = false;
+                    
+                }else{
+                    noresult = true;
+                    table [row] = line;
+                    row ++;
+                }
+
+                
+
+            }
+            br.close();
+            fr.close();
+
+            FileWriter fw = new FileWriter("dailyAppointment.txt");
+            String sentence = user.name+","+date+","+jCheckBox1.isSelected()+","+jCheckBox2.isSelected()+","+jCheckBox3.isSelected()+","+jCheckBox4.isSelected()+","+jCheckBox5.isSelected()+","+jCheckBox6.isSelected()+","+jCheckBox8.isSelected()+"\n";
+
+            for(int i=0; i<row; i++){
+                if (table[i] != null){
+                    fw.append(table[i]+"\n");
+                }
+                fw.append(sentence);
+            }
+            
+            
+            fw.close();
+        }catch(IOException e) {
+                System.out.println("Some error occured");
+        }
+        
+        doctorMainPage panel = new doctorMainPage(frame);
+        frame.remove(this);
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
+        doctorMainPage panel = new doctorMainPage(frame);
+        frame.remove(this);
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }//GEN-LAST:event_jLabel3MouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -268,5 +388,6 @@ public class dailySchedule extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

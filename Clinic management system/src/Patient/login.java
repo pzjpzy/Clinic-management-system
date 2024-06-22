@@ -229,11 +229,9 @@ public class login extends javax.swing.JPanel {
 //                    frame.revalidate();
 //                    frame.repaint();
                     wrongcredential = false;
-                }else{
-                    wrongcredential = true;
                 }
             }
-            if(wrongcredential == true){
+            if(wrongcredential == null){
                 System.out.println("Wrong user credential");
                 
             }

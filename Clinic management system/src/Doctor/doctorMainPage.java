@@ -73,7 +73,7 @@ public class doctorMainPage extends JPanel {
         });
 
         JButton appoint = new JButton(); //button 1
-        appoint.setText("Appointment (Walk in)");
+        appoint.setText("Appointment history");
         appoint.setVerticalTextPosition(JButton.BOTTOM);
         appoint.setHorizontalTextPosition(JButton.CENTER);
         appoint.setIcon(apImage);
@@ -81,6 +81,14 @@ public class doctorMainPage extends JPanel {
         appoint.setFont(new Font("My Boli",Font.PLAIN,25));
         appoint.setFocusable(false);
         appoint.setBackground(Color.white);
+        appoint.addActionListener((ActionEvent e) -> {
+            frame.remove(this);
+
+            appointmentHistory panel = new appointmentHistory(frame);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        });
 
         JButton schedule = new JButton(); //button 2
         schedule.setText("Upload Daily Schedule");
@@ -94,31 +102,47 @@ public class doctorMainPage extends JPanel {
         schedule.addActionListener((ActionEvent e) -> {
             frame.remove(this);
 
-            dailySchedule panel = new dailySchedule();
+            dailySchedule panel = new dailySchedule(frame);
             frame.add(panel);
             frame.revalidate();
             frame.repaint();
         });
         
-        JButton payment = new JButton(); // button 3
-        payment.setText("Check Patient Medical Record");
-        payment.setVerticalTextPosition(JButton.BOTTOM);
-        payment.setHorizontalTextPosition(JButton.CENTER);
-        payment.setIcon(mrImage);
-        payment.setBounds(300,375,370,250);
-        payment.setFont(new Font("My Boli",Font.PLAIN,25));
-        payment.setFocusable(false);
-        payment.setBackground(Color.white);
+        JButton medical = new JButton(); // button 3
+        medical.setText("Check Patient Medical Record");
+        medical.setVerticalTextPosition(JButton.BOTTOM);
+        medical.setHorizontalTextPosition(JButton.CENTER);
+        medical.setIcon(mrImage);
+        medical.setBounds(300,375,370,250);
+        medical.setFont(new Font("My Boli",Font.PLAIN,25));
+        medical.setFocusable(false);
+        medical.setBackground(Color.white);
+        medical.addActionListener((ActionEvent e) -> {
+            frame.remove(this);
 
-        JButton nUser = new JButton(); //button 4
-        nUser.setText("Delete Patient Info");
-        nUser.setVerticalTextPosition(JButton.BOTTOM);
-        nUser.setHorizontalTextPosition(JButton.CENTER);
-        nUser.setIcon(mrImage);
-        nUser.setBounds(830,375,370,250);
-        nUser.setFont(new Font("My Boli",Font.PLAIN,25));
-        nUser.setFocusable(false);
-        nUser.setBackground(Color.white);
+            mrTablev2 panel = new mrTablev2(frame);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        });
+
+        JButton cancel = new JButton(); //button 4
+        cancel.setText("Cancel Appointment");
+        cancel.setVerticalTextPosition(JButton.BOTTOM);
+        cancel.setHorizontalTextPosition(JButton.CENTER);
+        cancel.setIcon(mrImage);
+        cancel.setBounds(830,375,370,250);
+        cancel.setFont(new Font("My Boli",Font.PLAIN,25));
+        cancel.setFocusable(false);
+        cancel.setBackground(Color.white);
+        cancel.addActionListener((ActionEvent e) -> {
+            frame.remove(this);
+
+            cancelAppointment panel = new cancelAppointment(frame);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        });
 
         JPanel banner = new JPanel(); //banner
         banner.setBackground(new Color(92,201,205));
@@ -130,7 +154,7 @@ public class doctorMainPage extends JPanel {
         JPanel subbox = new JPanel();
         subbox.setBackground(new Color(162,229,221));
         subbox.setBounds(200,50,1100,600);
-        subbox.add(payment);
+        subbox.add(medical);
 
 
         JPanel box = new JPanel(); //below box
@@ -146,8 +170,8 @@ public class doctorMainPage extends JPanel {
         layer.add(subbox,Integer.valueOf(1));
         layer.add(appoint,Integer.valueOf(2));
         layer.add(schedule,Integer.valueOf(2));
-        layer.add(payment,Integer.valueOf(2));
-        layer.add(nUser,Integer.valueOf(2));
+        layer.add(medical,Integer.valueOf(2));
+        layer.add(cancel,Integer.valueOf(2));
 
 
         

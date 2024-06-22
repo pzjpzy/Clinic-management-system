@@ -25,7 +25,7 @@ import javax.swing.border.LineBorder;
  * @author pangz
  */
 public class medicalR extends JPanel{
-    medicalR(JFrame frame){
+    public medicalR(JFrame frame){
         FileReader fr;
         JTextArea textArea = new JTextArea();
         try {

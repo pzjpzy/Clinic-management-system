@@ -108,15 +108,23 @@ public class doctorMainPage extends JPanel {
             frame.repaint();
         });
         
-        JButton payment = new JButton(); // button 3
-        payment.setText("Check Patient Medical Record");
-        payment.setVerticalTextPosition(JButton.BOTTOM);
-        payment.setHorizontalTextPosition(JButton.CENTER);
-        payment.setIcon(mrImage);
-        payment.setBounds(300,375,370,250);
-        payment.setFont(new Font("My Boli",Font.PLAIN,25));
-        payment.setFocusable(false);
-        payment.setBackground(Color.white);
+        JButton medical = new JButton(); // button 3
+        medical.setText("Check Patient Medical Record");
+        medical.setVerticalTextPosition(JButton.BOTTOM);
+        medical.setHorizontalTextPosition(JButton.CENTER);
+        medical.setIcon(mrImage);
+        medical.setBounds(300,375,370,250);
+        medical.setFont(new Font("My Boli",Font.PLAIN,25));
+        medical.setFocusable(false);
+        medical.setBackground(Color.white);
+        medical.addActionListener((ActionEvent e) -> {
+            frame.remove(this);
+
+            mrTablev2 panel = new mrTablev2(frame);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        });
 
         JButton cancel = new JButton(); //button 4
         cancel.setText("Cancel Appointment");
@@ -146,7 +154,7 @@ public class doctorMainPage extends JPanel {
         JPanel subbox = new JPanel();
         subbox.setBackground(new Color(162,229,221));
         subbox.setBounds(200,50,1100,600);
-        subbox.add(payment);
+        subbox.add(medical);
 
 
         JPanel box = new JPanel(); //below box
@@ -162,7 +170,7 @@ public class doctorMainPage extends JPanel {
         layer.add(subbox,Integer.valueOf(1));
         layer.add(appoint,Integer.valueOf(2));
         layer.add(schedule,Integer.valueOf(2));
-        layer.add(payment,Integer.valueOf(2));
+        layer.add(medical,Integer.valueOf(2));
         layer.add(cancel,Integer.valueOf(2));
 
 

@@ -95,6 +95,14 @@ public class patientMenu extends JPanel{
                 mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
                 mRecord.setFocusable(false);
                 mRecord.setBackground(Color.white);
+                mRecord.addActionListener((ActionEvent e)->{
+                    frame.remove(this);
+
+                    mrTable panel = new mrTable(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();    
+                });
                 
                 
                 JPanel banner = new JPanel(); //banner

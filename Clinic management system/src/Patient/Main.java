@@ -18,9 +18,8 @@ public class Main {
 //          nAppointment nap = new nAppointment();
 //        NewClass newClass = new NewClass();
 //        NewClass newClass = new NewClass("Admin");
-//        test test = new test();
-           medicalR mr = new medicalR();
-//        frame frame = new frame();
+//           medicalR mr = new medicalR();
+        frame frame = new frame();
         
     }
     

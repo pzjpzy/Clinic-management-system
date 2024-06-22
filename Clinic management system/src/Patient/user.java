@@ -17,6 +17,13 @@ public class user {
     static String dob;
     static String gender;
     static String bloodType;
+    static String disease;
+    static String medicine;
+    static String allergies;
+    static String date;
+    static String vital;
+    static String followup;
+    
     
     static void update(String name,String password,String role,String ic, String phoneNum,String dob,String gender,String bloodType){
         user.name = name;
@@ -27,6 +34,20 @@ public class user {
         user.dob = dob;
         user.gender = gender;
         user.bloodType = bloodType;
+    }
+    
+    static void authenticate(String name,String ic,String disease,String medicine,String allergies,String date,String vital,String followup){
+        user.name = name;
+        user.ic = ic;
+        user.disease = disease;
+        user.medicine = medicine;
+        user.allergies = allergies;
+        user.date = date;
+        user.vital = vital;
+        user.followup = followup;
+        
+        
+        
     }
     
     static void display(){

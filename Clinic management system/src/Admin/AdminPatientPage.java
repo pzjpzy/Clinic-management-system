@@ -1,12 +1,11 @@
-package Admin;
 
-package Data;
+
 
 
 // * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 // * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
 
-
+package Admin;
 
 
 import java.io.BufferedReader;
@@ -15,7 +14,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-package Admin;
 /**
  *
  * @author User
@@ -485,7 +483,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
 
                 }
             }
-        }
+        
     }//GEN-LAST:event_jTable2MouseReleased
     
     /**
@@ -493,7 +491,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
      * @throws java.io.IOException
      */
     public static void main(String args[]) {
-       
+        System.out.println("h");
         
             
      
@@ -538,5 +536,5 @@ public class AdminPatientPage extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> role;
     // End of variables declaration//GEN-END:variables
 
-    }
-}
+}    
+

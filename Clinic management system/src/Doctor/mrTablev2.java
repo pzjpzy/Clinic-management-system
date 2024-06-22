@@ -180,27 +180,27 @@ public class mrTablev2 extends javax.swing.JPanel {
 
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         int row = jTable1.getSelectedRow();
-        user.disease = String.valueOf(container.getValueAt(row, 0));
-        user.medicine = String.valueOf(container.getValueAt(row, 1));
-        user.allergies = String.valueOf(container.getValueAt(row, 2));
-        user.date = String.valueOf(container.getValueAt(row, 3));
-        user.vital = String.valueOf(container.getValueAt(row, 4));
-        user.followup = String.valueOf(container.getValueAt(row, 5));
+//        user.disease = String.valueOf(container.getValueAt(row, 0));
+//        user.medicine = String.valueOf(container.getValueAt(row, 1));
+//        user.allergies = String.valueOf(container.getValueAt(row, 2));
+//        user.date = String.valueOf(container.getValueAt(row, 3));
+//        user.vital = String.valueOf(container.getValueAt(row, 4));
+//        user.followup = String.valueOf(container.getValueAt(row, 5));
 
         
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(user.date != null){
-            frame.remove(this);
-
-            medicalR panel = new medicalR(frame);
-            frame.add(panel);
-            frame.revalidate();
-            frame.repaint();
-        }else {
-            JOptionPane.showMessageDialog(null, "Please select something first","Reminder", JOptionPane.INFORMATION_MESSAGE);
-        }
+//        if(user.date != null){
+//            frame.remove(this);
+//
+//            medicalR panel = new medicalR(frame);
+//            frame.add(panel);
+//            frame.revalidate();
+//            frame.repaint();
+//        }else {
+//            JOptionPane.showMessageDialog(null, "Please select something first","Reminder", JOptionPane.INFORMATION_MESSAGE);
+//        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

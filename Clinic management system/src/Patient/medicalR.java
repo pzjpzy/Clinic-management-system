@@ -34,15 +34,17 @@ public class medicalR extends JPanel{
             String line = null;
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
-                if(user.disease.equals(values[0])){
+                String datarow[] = {values[2],values[3],values[5],values[7]};
+                if(user.disease.equals(datarow[0]) && user.medicine.equals(datarow[1]) && user.date.equals(datarow[2]) && user.followup.equals(datarow[3]) ){
+                    String ndatarow[] = {values[0],values[1],values[2],values[3],values[4],values[5],values[6],values[7]};
                     textArea.setText(
                         "\n"+   
-                        "\s"+"\s"+"Disease : "+user.disease+"\n"+
-                        "\s"+"\s"+"Medicine : "+user.medicine+"\n"+
-                        "\s"+"\s"+"Allergies : "+user.allergies+"\n"+
-                        "\s"+"\s"+"Date : "+user.date+"\n"+
-                        "\s"+"\s"+"Vitals : "+user.vital+"\n"+
-                        "\s"+"\s"+"Follow-up Appointment : "+user.followup+"\n"                
+                        "\s"+"\s"+"Disease : "+ndatarow[2]+"\n"+
+                        "\s"+"\s"+"Medicine : "+ndatarow[3]+"\n"+
+                        "\s"+"\s"+"Allergies : "+ndatarow[4]+"\n"+
+                        "\s"+"\s"+"Date : "+ndatarow[5]+"\n"+
+                        "\s"+"\s"+"Vitals : "+ndatarow[6]+"\n"+
+                        "\s"+"\s"+"Follow-up Appointment : "+ndatarow[7]+"\n"                
                     );  
                                 
                 }

@@ -9,7 +9,7 @@ package Patient;
  * @author pangz
  */
 public class user {
-    static String name;
+    public static String name;
     static String password;
     static String role;
     static String ic;

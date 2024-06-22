@@ -491,7 +491,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
      * @throws java.io.IOException
      */
     public static void main(String args[]) {
-        System.out.println("h");
+        
         
             
      

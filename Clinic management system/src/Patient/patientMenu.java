@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Patient;
-import Doctor.login;/**
+/**
  *
  * @author pangz
  */
@@ -29,7 +29,7 @@ public class patientMenu extends JPanel{
             ImageIcon image2 = new ImageIcon("src/Patient/appointment.png");
             Image resizedUserImage2 = image2.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
             ImageIcon apImage = new ImageIcon(resizedUserImage2);
-            ImageIcon image3 = new ImageIcon("src/Patient/medical3.png");
+            ImageIcon image3 = new ImageIcon("src/Patient/medical.png");
             Image resizedUserImage3 = image3.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
             ImageIcon mrImage = new ImageIcon(resizedUserImage3);
         
@@ -65,7 +65,7 @@ public class patientMenu extends JPanel{
                     login panel = new login(frame);
                     frame.add(panel);
                     frame.revalidate();
-                    frame.repaint();
+                    frame.repaint();    
                 });
                 
                 JButton appoint = new JButton(); //appointment button
@@ -73,17 +73,25 @@ public class patientMenu extends JPanel{
                 appoint.setVerticalTextPosition(JButton.BOTTOM);
                 appoint.setHorizontalTextPosition(JButton.CENTER);
                 appoint.setIcon(apImage);
-                appoint.setBounds(300,300,400,400);
+                appoint.setBounds(300,150,400,400);
                 appoint.setFont(new Font("My Boli",Font.PLAIN,25));
                 appoint.setFocusable(false);
                 appoint.setBackground(Color.white);
+                appoint.addActionListener((ActionEvent e)->{
+                    frame.remove(this);
+
+                    Appointment panel = new Appointment(frame);
+                    frame.add(panel);
+                    frame.revalidate();
+                    frame.repaint();    
+                });
                 
                 JButton mRecord = new JButton();
                 mRecord.setText("Medical Record");
                 mRecord.setVerticalTextPosition(JButton.BOTTOM);
                 mRecord.setHorizontalTextPosition(JButton.CENTER);
                 mRecord.setIcon(mrImage);
-                mRecord.setBounds(800,300,400,400);
+                mRecord.setBounds(800,150,400,400);
                 mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
                 mRecord.setFocusable(false);
                 mRecord.setBackground(Color.white);
@@ -98,7 +106,7 @@ public class patientMenu extends JPanel{
                 
                 JPanel subbox = new JPanel();
                 subbox.setBackground(new Color(162,229,221));
-                subbox.setBounds(200,200,1100,600);
+                subbox.setBounds(200,50,1100,600);
 
                 
                 JPanel box = new JPanel(); //below box
@@ -107,21 +115,23 @@ public class patientMenu extends JPanel{
                 box.add(subbox);
                 
                 JLayeredPane layer = new JLayeredPane();
-                layer.setBounds(0,150,1000,1000);
+                layer.setBounds(0,150,1536,864);
                 layer.add(box,Integer.valueOf(0));
                 layer.add(subbox,Integer.valueOf(1));
                 layer.add(appoint,Integer.valueOf(2));
                 layer.add(mRecord,Integer.valueOf(3));
 		
 
-		frame.setTitle("Patient Menu");
-		frame.setVisible(true);
-		frame.setResizable(false);
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-                frame.add(banner);
-                frame.add(layer);
+//		frame.setTitle("Patient Menu");
+//		frame.setVisible(true);
+//		frame.setResizable(false);
+//		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                add(banner);
+                add(layer);
 
-
+                setBounds(0,0,1536,864);
+        
+                setLayout(null);
                         
 	}
 }

@@ -82,15 +82,23 @@ public class doctorMainPage extends JPanel {
         appoint.setFocusable(false);
         appoint.setBackground(Color.white);
 
-        JButton mRecord = new JButton(); //button 2
-        mRecord.setText("Upload Daily Schedule");
-        mRecord.setVerticalTextPosition(JButton.BOTTOM);
-        mRecord.setHorizontalTextPosition(JButton.CENTER);
-        mRecord.setIcon(mrImage);
-        mRecord.setBounds(830,100,370,250);
-        mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
-        mRecord.setFocusable(false);
-        mRecord.setBackground(Color.white);
+        JButton schedule = new JButton(); //button 2
+        schedule.setText("Upload Daily Schedule");
+        schedule.setVerticalTextPosition(JButton.BOTTOM);
+        schedule.setHorizontalTextPosition(JButton.CENTER);
+        schedule.setIcon(mrImage);
+        schedule.setBounds(830,100,370,250);
+        schedule.setFont(new Font("My Boli",Font.PLAIN,25));
+        schedule.setFocusable(false);
+        schedule.setBackground(Color.white);
+        schedule.addActionListener((ActionEvent e) -> {
+            frame.remove(this);
+
+            dailySchedule panel = new dailySchedule();
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        });
         
         JButton payment = new JButton(); // button 3
         payment.setText("Check Patient Medical Record");
@@ -137,7 +145,7 @@ public class doctorMainPage extends JPanel {
         layer.add(box,Integer.valueOf(0));
         layer.add(subbox,Integer.valueOf(1));
         layer.add(appoint,Integer.valueOf(2));
-        layer.add(mRecord,Integer.valueOf(2));
+        layer.add(schedule,Integer.valueOf(2));
         layer.add(payment,Integer.valueOf(2));
         layer.add(nUser,Integer.valueOf(2));
 

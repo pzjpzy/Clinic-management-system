@@ -18,13 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pangz
  */
-public class mrTablev2 extends javax.swing.JPanel {
+public class mrTablev3 extends javax.swing.JPanel {
     boolean search;
     String user;
     JFrame frame;
     private DefaultTableModel container = new DefaultTableModel();
-    private String columnName[] = {"Name","Disease","Medicine","Allergies","Date","Vitals","Follow-up Appointment"};
-    public mrTablev2(JFrame frame) {
+    private String columnName[] = {"Name","Disease","Medicine","Date","Follow-up Appointment"};
+    public mrTablev3(JFrame frame) {
         this.frame = frame;
         container.setColumnIdentifiers(columnName);
         try{
@@ -35,7 +35,8 @@ public class mrTablev2 extends javax.swing.JPanel {
         
         while((line = br.readLine())!= null){
             String values[] = line.split(",");
-            container.addRow(values);
+            String datarow[] = {values[0],values[2],values[3],values[5],values[7]};
+            container.addRow(datarow);
         }
         br.close();
         fr.close();
@@ -45,7 +46,38 @@ public class mrTablev2 extends javax.swing.JPanel {
         initComponents();
         setBounds(0,0,1536,864);
     }
+    
+    
+    public mrTablev3(JFrame frame,boolean search, String user) {
+        setBounds(0,0,1536,864);
+        this.frame = frame;
+        this.search = search;
+        this.user = user;
+        container.setColumnIdentifiers(columnName);
+        try{
+            FileReader fr = new FileReader("medicalrecord.txt");
+            BufferedReader br  = new BufferedReader(fr);
 
+            String line = null;
+            while((line = br.readLine()) != null){
+                String values[] = line.split(",");
+                if(search == true){
+                    if(user.equals(values[0])){
+                        String datarow[] = {values[0],values[2],values[3],values[5],values[7]};
+                        container.addRow(datarow);
+                    }
+                
+                }else{
+                    String datarow[] = {values[0],values[2],values[3],values[5],values[7]};
+                    container.addRow(datarow);
+                }
+                
+            }
+        }catch(IOException e) {
+                System.out.println("Some error occured");
+        }
+        initComponents();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -213,7 +245,7 @@ public class mrTablev2 extends javax.swing.JPanel {
             search = true;
         }
 
-        appointmentHistory panel = new appointmentHistory(frame,search,user);
+        mrTablev3 panel = new mrTablev3(frame,search,user);
         frame.remove(this);
         frame.add(panel);
         frame.revalidate();

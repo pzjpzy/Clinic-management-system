@@ -28,10 +28,13 @@ public class mrTable extends javax.swing.JPanel {
         
         String line = null;
         
+        
         while((line = br.readLine())!= null){
             String values[] = line.split(",");
-            String datarow[] = {values[2],values[3],values[5],values[7]};
-            container.addRow(datarow);
+            if(user.name.equals(values[0])){
+                String datarow[] = {values[2],values[3],values[5],values[7]};
+                container.addRow(datarow);            
+            }
         }
         br.close();
         fr.close();

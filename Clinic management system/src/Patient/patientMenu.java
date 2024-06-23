@@ -35,7 +35,7 @@ public class patientMenu extends JPanel{
         
                 
 		JLabel label1 = new JLabel(); //welcome user
-		label1.setText("Welcome, XXX");
+		label1.setText("Welcome, "+user.name);
 		label1.setIcon(resizedIcon);
 		label1.setOpaque(false);
                 label1.setFont(new Font("My Boli",Font.PLAIN,30));
@@ -48,7 +48,7 @@ public class patientMenu extends JPanel{
                 
                 JPanel subban = new JPanel(); // box for welcome user
                 subban.setBackground(new Color(92,201,205));
-                subban.setBounds(30,20,350,140);
+                subban.setBounds(30,20,500,140);
                 subban.add(label1);
                 
                 JButton logout = new JButton(); //logout button

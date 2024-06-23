@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pangz
  */
-public class cancelAppointmentV2 extends javax.swing.JPanel {
+public class appointmentHistoryV2 extends javax.swing.JPanel {
     JFrame frame;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDateTime now = LocalDateTime.now();
@@ -32,11 +32,14 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
     String rowDate;
     private DefaultTableModel container = new DefaultTableModel();
     
-    private String columnName[] = {"Doctor's Name","Time slot","Date"};
+    private String columnName[] = {"Doctor's Name","Patient's name","Time slot","Date"};
+    
+    boolean search = false;
+    String user = "";
     /**
      * Creates new form cancelAppointment
      */
-    public cancelAppointmentV2(JFrame frame) {
+    public appointmentHistoryV2(JFrame frame) {
         setBounds(0,0,1536,864);
         this.frame = frame;
         container.setColumnIdentifiers(columnName);
@@ -47,9 +50,38 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
             String line = null;
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
-                if(user.name.equals(values[1]) && date.equals(values[3])){
-                    String datarow[] = {values[0],values[2],values[3]};
-                    container.addRow(datarow);
+                
+                container.addRow(values);
+                    
+                
+            }
+        }catch(IOException e) {
+                System.out.println("Some error occured");
+        }
+        initComponents();
+    }
+    
+    
+    public appointmentHistoryV2(JFrame frame,boolean search, String user) {
+        setBounds(0,0,1536,864);
+        this.frame = frame;
+        this.search = search;
+        this.user = user;
+        container.setColumnIdentifiers(columnName);
+        try{
+            FileReader fr = new FileReader("Appointment.txt");
+            BufferedReader br  = new BufferedReader(fr);
+
+            String line = null;
+            while((line = br.readLine()) != null){
+                String values[] = line.split(",");
+                if(search == true){
+                    if(user.equals(values[1])){
+                    container.addRow(values);
+                    }
+                
+                }else{
+                    container.addRow(values);
                 }
                 
             }
@@ -58,7 +90,6 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
         }
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,14 +102,13 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setBackground(java.awt.Color.white);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Cancel Appointment");
+        jLabel1.setText("Appointment History");
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTable1.setModel(container);
@@ -93,17 +123,6 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setBackground(new java.awt.Color(255, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton1.setText("Cancel Appointment");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.setFocusable(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setBackground(java.awt.Color.white);
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -121,34 +140,30 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(158, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(124, 124, 124))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(486, 486, 486))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(512, 512, 512))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(184, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 486, Short.MAX_VALUE)
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(126, 126, 126))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -156,72 +171,13 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
         int row  = jTable1.getSelectedRow();
         
         doctorName = String.valueOf(container.getValueAt(row,0));
-         timeSlot = String.valueOf(container.getValueAt(row,1));
-         rowDate = String.valueOf(container.getValueAt(row,2));
+         patientName = String.valueOf(container.getValueAt(row,1));
+         timeSlot = String.valueOf(container.getValueAt(row,2));
+         rowDate = String.valueOf(container.getValueAt(row,3));
     }//GEN-LAST:event_jTable1MouseReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (doctorName != null){
-            try{
-                //update file content
-
-
-                FileReader fr = new FileReader("Appointment.txt");
-                BufferedReader br  = new BufferedReader(fr);
-
-                String table[] = new String[100];
-                String line = null;
-                int row = 0;
-
-
-                while((line = br.readLine()) != null){
-                    String values[] = line.split(",");
-                    
-
-
-                    if(doctorName.equals(values[0]) && timeSlot.equals(values[2]) && rowDate.equals(values[3])){ //if got result
-                        //do nothing
-                        System.out.println("ok");
-                        
-                    }else{
-                        table [row] = line;
-                        row ++;
-                    }
-
-
-
-                }
-                br.close();
-                fr.close();
-
-                FileWriter fw = new FileWriter("Appointment.txt");
-
-                for(int i=0; i<row; i++){
-                    if (table[i] != null){
-                        fw.append(table[i]+"\n");
-                    }
-                }
-
-
-                fw.close();
-            }catch(IOException e) {
-                    System.out.println("Some error occured");
-            }
-
-            cancelAppointmentV2 panel = new cancelAppointmentV2(frame);
-            frame.remove(this);
-            frame.add(panel);
-            frame.revalidate();
-            frame.repaint();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Please select an appointment first.","Information",JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
-        Appointment panel = new Appointment(frame);
+        doctorMainPage panel = new doctorMainPage(frame);
         frame.remove(this);
         frame.add(panel);
         frame.revalidate();
@@ -230,7 +186,6 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;

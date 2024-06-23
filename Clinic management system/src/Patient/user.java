@@ -36,14 +36,11 @@ public class user {
         user.bloodType = bloodType;
     }
     
-    static void authenticate(String name,String ic,String disease,String medicine,String allergies,String date,String vital,String followup){
-        user.name = name;
-        user.ic = ic;
+    static void bringmedicaldata(String disease,String medicine,String date,String followup){
+
         user.disease = disease;
         user.medicine = medicine;
-        user.allergies = allergies;
         user.date = date;
-        user.vital = vital;
         user.followup = followup;
         
         

@@ -351,9 +351,9 @@ public class dailySchedule extends javax.swing.JPanel {
                 if (table[i] != null){
                     fw.append(table[i]+"\n");
                 }
-                fw.append(sentence);
+                
             }
-            
+            fw.append(sentence);
             
             fw.close();
         }catch(IOException e) {

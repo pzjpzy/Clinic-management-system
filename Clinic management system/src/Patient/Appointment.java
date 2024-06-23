@@ -97,6 +97,14 @@ public class Appointment extends JPanel {
             mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
             mRecord.setFocusable(false);
             mRecord.setBackground(Color.white);
+            mRecord.addActionListener((ActionEvent e)->{ // go to patientMenu
+                frame.remove(this);
+
+                Atimeslot panel = new Atimeslot(frame);
+                frame.add(panel);
+                frame.revalidate();
+                frame.repaint();    
+            });
             
             JButton payment = new JButton(); // button 3
             payment.setText("Appointment History");

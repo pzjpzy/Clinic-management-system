@@ -35,7 +35,6 @@ public class appointmentHistoryV2 extends javax.swing.JPanel {
     private String columnName[] = {"Doctor's Name","Patient's name","Time slot","Date"};
     
     boolean search = false;
-    String user = "";
     /**
      * Creates new form cancelAppointment
      */
@@ -50,7 +49,7 @@ public class appointmentHistoryV2 extends javax.swing.JPanel {
             String line = null;
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
-                
+                if(user.name.equals(values[1]))
                 container.addRow(values);
                     
                 
@@ -60,36 +59,7 @@ public class appointmentHistoryV2 extends javax.swing.JPanel {
         }
         initComponents();
     }
-    
-    
-    public appointmentHistoryV2(JFrame frame,boolean search, String user) {
-        setBounds(0,0,1536,864);
-        this.frame = frame;
-        this.search = search;
-        this.user = user;
-        container.setColumnIdentifiers(columnName);
-        try{
-            FileReader fr = new FileReader("Appointment.txt");
-            BufferedReader br  = new BufferedReader(fr);
-
-            String line = null;
-            while((line = br.readLine()) != null){
-                String values[] = line.split(",");
-                if(search == true){
-                    if(user.equals(values[1])){
-                    container.addRow(values);
-                    }
-                
-                }else{
-                    container.addRow(values);
-                }
-                
-            }
-        }catch(IOException e) {
-                System.out.println("Some error occured");
-        }
-        initComponents();
-    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -177,7 +147,7 @@ public class appointmentHistoryV2 extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jLabel3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseReleased
-        doctorMainPage panel = new doctorMainPage(frame);
+        Appointment panel = new Appointment(frame);
         frame.remove(this);
         frame.add(panel);
         frame.revalidate();

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -249,6 +250,7 @@ public class addMedicalR extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
@@ -312,8 +314,9 @@ public class addMedicalR extends javax.swing.JPanel {
             br.close();
             fr.close();
 
+            
             FileWriter fw = new FileWriter("medicalrecord.txt");
-            String sentence = jTextField1.getText()+","+jTextField2.getText()+","+jTextField3.getText()+","+jTextField4.getText()+","+jTextField5.getText()+","+date+","+jTextField6.getText()+","+jTextField7.getText()+"\n";
+            String sentence = jTextField1.getText()+","+Integer.parseInt(jTextField2.getText())+","+jTextField3.getText()+","+jTextField4.getText()+","+jTextField5.getText()+","+date+","+jTextField6.getText()+","+jTextField7.getText()+"\n";
 
             for(int i=0; i<row; i++){
                 if (table[i] != null){
@@ -324,15 +327,18 @@ public class addMedicalR extends javax.swing.JPanel {
             fw.append(sentence);
             
             fw.close();
+            frame.remove(this);
+            mrTablev2 panel = new mrTablev2(frame);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
         }catch(IOException e) {
                 System.out.println("Some error occured");
+        }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(null, "Ic Number must be in number, try again.","Reminder", JOptionPane.INFORMATION_MESSAGE);
         }
         
-        frame.remove(this);
-        mrTablev2 panel = new mrTablev2(frame);
-        frame.add(panel);
-        frame.revalidate();
-        frame.repaint();
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
 

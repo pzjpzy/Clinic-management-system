@@ -25,11 +25,13 @@ public class Atimeslot extends javax.swing.JPanel {
     javax.swing.DefaultComboBoxModel doctorModel = new javax.swing.DefaultComboBoxModel();
     javax.swing.DefaultComboBoxModel timeModel = new javax.swing.DefaultComboBoxModel();
     private DefaultTableModel container = new DefaultTableModel();
-    private String columnName[] = {"Time slot"};
+    
+    private String columnName[] = {""};
     /**
      * Creates new form Atimeslot
      */
     public Atimeslot(JFrame frame) {
+        
         try{
         FileReader fr = new FileReader("dailyAppointment.txt");
         BufferedReader br = new BufferedReader(fr);
@@ -43,31 +45,9 @@ public class Atimeslot extends javax.swing.JPanel {
                 doctorModel.addElement(values[0]);
 
             }
-
-
-
-            
+  
         }
-        
-        //show all time slot
-//        line = null;
-//        
-//        while((line = br.readLine())!= null){
-//            
-//            String values[] = line.split(",");
-//            System.out.println(jComboBox1.getSelectedItem());
-//            if(jComboBox1.getSelectedItem() == values[0]){
-//                if(values[2].equals(true)){
-//                    timeModel.addElement(values[2]);
-//                }
-//            }
-//
-//        }
-        
-        
-        
-        
-        
+
         br.close();
         fr.close();
         
@@ -83,39 +63,9 @@ public class Atimeslot extends javax.swing.JPanel {
         setBounds(0,0,1536,864);
         initComponents();
     }
-    public Atimeslot(JFrame frame, javax.swing.DefaultComboBoxModel timeModel) {
-        try{
-        FileReader fr = new FileReader("dailyAppointment.txt");
-        BufferedReader br = new BufferedReader(fr);
-        //show all doctor
-        String line = null;
-
-        while((line = br.readLine())!= null){
-            boolean sameDoc = false;
-            String values[] = line.split(",");
-            
-
-            doctorModel.addElement(values[0]);
-
-
-            
-        }
-        
-        //show all time slot
-        this.timeModel = timeModel;
-        
-        
-        }catch(IOException e){
-            System.out.println("error");
-        }
-        
-        
-        
-        container.setColumnIdentifiers(columnName);
-        this.frame = frame;
-        setBounds(0,0,1536,864);
-        initComponents();
-    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -136,6 +86,8 @@ public class Atimeslot extends javax.swing.JPanel {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,10 +101,14 @@ public class Atimeslot extends javax.swing.JPanel {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Time slot:");
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jTable1.setModel(container);
+        jTable1.setFocusable(false);
+        jTable1.setRowHeight(80);
+        jTable1.setRowMargin(10);
         jScrollPane1.setViewportView(jTable1);
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jComboBox1.setModel(doctorModel);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +116,7 @@ public class Atimeslot extends javax.swing.JPanel {
             }
         });
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jComboBox2.setModel(timeModel
         );
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -202,7 +158,14 @@ public class Atimeslot extends javax.swing.JPanel {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel4.setText("*Note: 1.00-2.00 is lunch break");
+        jLabel4.setText("*Note: Please press this button after choosing doctor");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("*Note: 1.00-2.00 is lunch break");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Available timeslot");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -214,37 +177,42 @@ public class Atimeslot extends javax.swing.JPanel {
                         .addGap(23, 23, 23)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76))
+                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(87, 87, 87)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(78, 78, 78)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(178, 178, 178))
+                        .addGap(102, 102, 102))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(231, 231, 231)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(157, 157, 157)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(344, Short.MAX_VALUE))
+                        .addGap(166, 166, 166)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(310, 310, 310))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(389, 389, 389))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(664, Short.MAX_VALUE)
+                    .addContainerGap(751, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(456, 456, 456)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(167, 167, 167)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(1207, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,28 +221,35 @@ public class Atimeslot extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
+                .addGap(140, 140, 140)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(133, 133, 133))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(10, 10, 10)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(731, Short.MAX_VALUE)))
+                    .addContainerGap(757, Short.MAX_VALUE)))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(554, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(297, 297, 297)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -348,6 +323,7 @@ public class Atimeslot extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         timeModel.removeAllElements();
+        container.setRowCount(0);
         System.out.println(jComboBox1.getSelectedItem());
         try{
         FileReader fr = new FileReader("dailyAppointment.txt");
@@ -363,26 +339,38 @@ public class Atimeslot extends javax.swing.JPanel {
                 System.out.println("hello");
                 if(values[2].equals("true")){
                     timeModel.addElement("9.00-10.00");
-                    System.out.println("hi");
+                    String timeslot[] = {"9.00-10.00"};
+                    container.addRow(timeslot);
                 }
                 if(values[3].equals("true")){
                     timeModel.addElement("10.00-11.00");
-                    System.out.println("bye");
+                    String timeslot[] = {"10.00-11.00"};
+                    container.addRow(timeslot);
                 }
                 if(values[4].equals("true")){
                     timeModel.addElement("11.00-12.00");
+                    String timeslot[] = {"11.00-12.00"};
+                    container.addRow(timeslot);
                 }
                 if(values[5].equals("true")){
                     timeModel.addElement("12.00-1.00");
+                    String timeslot[] = {"12.00-1.00"};
+                    container.addRow(timeslot);
                 }
                 if(values[6].equals("true")){
                     timeModel.addElement("2.00-3.00");
+                    String timeslot[] = {"2.00-3.00"};
+                    container.addRow(timeslot);
                 }
                 if(values[7].equals("true")){
                     timeModel.addElement("3.00-4.00");
+                    String timeslot[] = {"3.00-4.00"};
+                    container.addRow(timeslot);
                 }
                 if(values[8].equals("true")){
                     timeModel.addElement("5.00-6.00");
+                    String timeslot[] = {"5.00-6.00"};
+                    container.addRow(timeslot);
                 }
             }
         }
@@ -415,6 +403,8 @@ public class Atimeslot extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

@@ -4,9 +4,15 @@
  */
 package Admin;
 
-import Doctor.frame;
+import Doctor.mrTablev2;
 import Patient.login;
+import Patient.user;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -157,7 +163,7 @@ public class AAP extends javax.swing.JPanel {
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -170,6 +176,8 @@ public class AAP extends javax.swing.JPanel {
             }
         ));
         jTable1.setToolTipText("");
+        jTable1.setRowHeight(40);
+        jTable1.setRowMargin(10);
         jScrollPane1.setViewportView(jTable1);
 
         jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -305,6 +313,59 @@ public class AAP extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       if (user.disease != null){
+            try{
+                //update file content
+
+
+                FileReader fr = new FileReader("medicalrecord.txt");
+                BufferedReader br  = new BufferedReader(fr);
+
+                String table[] = new String[100];
+                String line = null;
+                int row = 0;
+
+
+                while((line = br.readLine()) != null){
+                    String values[] = line.split(",");
+
+
+                    if(user.disease.equals(values[2]) && user.medicine.equals(values[3]) && user.date.equals(values[5]) && user.followup.equals(values[7])){ //if got result
+                        //do nothing
+                    }else{
+                        table [row] = line;
+                        row ++;
+                    }
+
+
+
+                }
+                br.close();
+                fr.close();
+
+                FileWriter fw = new FileWriter("medicalrecord.txt");
+
+                for(int i=0; i<row; i++){
+                    if (table[i] != null){
+                        fw.append(table[i]+"\n");
+                    }
+                }
+
+
+                fw.close();
+            }catch(IOException e) {
+                    System.out.println("Some error occured");
+            }
+
+            mrTablev2 panel = new mrTablev2(frame);
+            frame.remove(this);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Please select medical record first.","Information",JOptionPane.INFORMATION_MESSAGE);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 

@@ -97,6 +97,14 @@ public class Appointment extends JPanel {
             mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
             mRecord.setFocusable(false);
             mRecord.setBackground(Color.white);
+            mRecord.addActionListener((ActionEvent e)->{
+                frame.remove(this);
+
+                Atimeslot panel = new Atimeslot(frame);
+                frame.add(panel);
+                frame.revalidate();
+                frame.repaint();    
+            });
             
             JButton payment = new JButton(); // button 3
             payment.setText("Appointment History");
@@ -107,6 +115,14 @@ public class Appointment extends JPanel {
             payment.setFont(new Font("My Boli",Font.PLAIN,25));
             payment.setFocusable(false);
             payment.setBackground(Color.white);
+            payment.addActionListener((ActionEvent e)->{
+                frame.remove(this);
+
+                appointmentHistoryV2 panel = new appointmentHistoryV2(frame);
+                frame.add(panel);
+                frame.revalidate();
+                frame.repaint();    
+            });
 
 
             JPanel banner = new JPanel(); //banner

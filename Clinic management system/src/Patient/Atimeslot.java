@@ -4,6 +4,8 @@
  */
 package Patient;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author pangz
@@ -13,7 +15,7 @@ public class Atimeslot extends javax.swing.JPanel {
     /**
      * Creates new form Atimeslot
      */
-    public Atimeslot() {
+    public Atimeslot(JFrame frame) {
         initComponents();
     }
 

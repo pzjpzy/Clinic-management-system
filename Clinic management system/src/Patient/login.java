@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -232,8 +233,7 @@ public class login extends javax.swing.JPanel {
                 }
             }
             if(wrongcredential == null){
-                System.out.println("Wrong user credential");
-                
+                JOptionPane.showMessageDialog(null, "Wrong credential given!","Error", JOptionPane.WARNING_MESSAGE);        
             }
         }catch(IOException e) {
                 System.out.println("Some error occured");

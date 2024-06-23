@@ -5,7 +5,6 @@
 package Doctor;
 
 import Patient.medicalR;
-import Patient.patientMenu;
 import Patient.user;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -18,13 +17,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pangz
  */
-public class mrTablev3 extends javax.swing.JPanel {
+public class mrTablev2 extends javax.swing.JPanel {
     boolean search;
-    String user;
+    String user1;
     JFrame frame;
     private DefaultTableModel container = new DefaultTableModel();
     private String columnName[] = {"Name","Disease","Medicine","Date","Follow-up Appointment"};
-    public mrTablev3(JFrame frame) {
+    public mrTablev2(JFrame frame) {
         this.frame = frame;
         container.setColumnIdentifiers(columnName);
         try{
@@ -48,11 +47,11 @@ public class mrTablev3 extends javax.swing.JPanel {
     }
     
     
-    public mrTablev3(JFrame frame,boolean search, String user) {
+    public mrTablev2(JFrame frame,boolean search, String user1) {
         setBounds(0,0,1536,864);
         this.frame = frame;
         this.search = search;
-        this.user = user;
+        this.user1 = user1;
         container.setColumnIdentifiers(columnName);
         try{
             FileReader fr = new FileReader("medicalrecord.txt");
@@ -62,7 +61,7 @@ public class mrTablev3 extends javax.swing.JPanel {
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
                 if(search == true){
-                    if(user.equals(values[0])){
+                    if(user1.equals(values[0])){
                         String datarow[] = {values[0],values[2],values[3],values[5],values[7]};
                         container.addRow(datarow);
                     }
@@ -95,6 +94,7 @@ public class mrTablev3 extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,6 +149,17 @@ public class mrTablev3 extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel2.setText("Please search by patient name");
 
+        jButton4.setBackground(new java.awt.Color(153, 153, 255));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jButton4.setText("Add new record");
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton4.setFocusable(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,7 +187,9 @@ public class mrTablev3 extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(36, 36, 36)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -189,7 +202,9 @@ public class mrTablev3 extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -203,7 +218,7 @@ public class mrTablev3 extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         frame.remove(this);
 
-        patientMenu panel = new patientMenu(frame);
+        doctorMainPage panel = new doctorMainPage(frame);
         frame.add(panel);
         frame.revalidate();
         frame.repaint(); 
@@ -212,27 +227,25 @@ public class mrTablev3 extends javax.swing.JPanel {
 
     private void jTable1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseReleased
         int row = jTable1.getSelectedRow();
-//        user.disease = String.valueOf(container.getValueAt(row, 0));
-//        user.medicine = String.valueOf(container.getValueAt(row, 1));
-//        user.allergies = String.valueOf(container.getValueAt(row, 2));
-//        user.date = String.valueOf(container.getValueAt(row, 3));
-//        user.vital = String.valueOf(container.getValueAt(row, 4));
-//        user.followup = String.valueOf(container.getValueAt(row, 5));
+        user.disease = String.valueOf(container.getValueAt(row, 1));
+        user.medicine = String.valueOf(container.getValueAt(row, 2));
+        user.date = String.valueOf(container.getValueAt(row, 3));
+        user.followup = String.valueOf(container.getValueAt(row, 4));
 
         
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        if(user.date != null){
-//            frame.remove(this);
-//
-//            medicalR panel = new medicalR(frame);
-//            frame.add(panel);
-//            frame.revalidate();
-//            frame.repaint();
-//        }else {
-//            JOptionPane.showMessageDialog(null, "Please select something first","Reminder", JOptionPane.INFORMATION_MESSAGE);
-//        }
+        if(user.date != null){
+            frame.remove(this);
+
+            medicalR panel = new medicalR(frame);
+            frame.add(panel);
+            frame.revalidate();
+            frame.repaint();
+        }else {
+            JOptionPane.showMessageDialog(null, "Please select something first","Reminder", JOptionPane.INFORMATION_MESSAGE);
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -241,22 +254,31 @@ public class mrTablev3 extends javax.swing.JPanel {
         if(jTextField1.getText().isEmpty()){
             search = false;
         }else{
-            user = jTextField1.getText();
+            user1 = jTextField1.getText();
             search = true;
         }
 
-        mrTablev3 panel = new mrTablev3(frame,search,user);
+        mrTablev2 panel = new mrTablev2(frame,search,user1);
         frame.remove(this);
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        addMedicalR panel = new addMedicalR(frame);
+        frame.remove(this);
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

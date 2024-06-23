@@ -9,12 +9,12 @@ package Admin;
 
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +27,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
     private String PatientcolumnName[] = {"Name", "Username", "Password", "Gender", "IC Number", "Phone Number", "Blood Type", "Role"};
     
    
-    public AdminPatientPage() throws IOException{
+    public AdminPatientPage(JFrame frame) throws IOException{
         container.setColumnIdentifiers(PatientcolumnName);
         
         try{
@@ -37,8 +37,8 @@ public class AdminPatientPage extends javax.swing.JFrame {
             String line = null;
             
             while((line = br.readLine()) != null){
-                String PatientcolumnName[] = line.split(",");  
-                container.addRow(PatientcolumnName);
+                String Patientrow[] = line.split(",");  
+                container.addRow(Patientrow);
             }
             br.close();
             fr.close();
@@ -417,7 +417,8 @@ public class AdminPatientPage extends javax.swing.JFrame {
         String BloodType = String.valueOf(container.getValueAt(row1, 6));
         String Role = String.valueOf(container.getValueAt(row1, 7));
         
-       String PatientData[] = {name, username, password, gend, String.valueOf(ICNumber),  String.valueOf(PhoneNumber), BloodType, Role } ;
+       String PatientData[] = {FullName.getText(), UserName.getText(), pass.getText(), String.valueOf(gender.getSelectedItem()), 
+           icnum.getText(),phonenumber.getText(), String.valueOf(blood.getSelectedItem()), String.valueOf(role.getSelectedItem()) } ;
        container.removeRow(row1);
        container.insertRow(row1,PatientData);
        
@@ -433,8 +434,17 @@ public class AdminPatientPage extends javax.swing.JFrame {
 
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
-                if(username == values[1]||ICNumber == values[4]){
-                    table [row] = name+","+username+","+  password+","+  gend+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+  BloodType+","+  Role + "\n" ;
+                if(username.equals(values[1]) && ICNumber.equals(values[4])){
+                    values[0] = FullName.getText();
+                    values[1] = UserName.getText();
+                    values[2] = pass.getText();
+                    values[3] = String.valueOf(gender.getSelectedItem());
+                    values[4] = icnum.getText();
+                    values[5] = phonenumber.getText();
+                    values[6] = String.valueOf(blood.getSelectedItem());
+                    values[7] = String.valueOf(role.getSelectedItem());
+                    table [row] = values[0]+","+values[1]+","+  values[2]+","+values[3]+","+values[4]+","+ values[5]+","+values[6]+","+values[7];
+                    System.out.println("hi");
                 }else{
                     table [row] = line;
                     
@@ -449,7 +459,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
 
             for(int i=0; i<row; i++){
                 if (table[i] != null){
-                    fw.append(table[i]+"\n");
+                    fw.append(table[row]+"\n");
                 }
                
             }
@@ -567,19 +577,19 @@ public class AdminPatientPage extends javax.swing.JFrame {
      * @param args the command line arguments
      * @throws java.io.IOException
      */
-    public static void main(String args[]) {
-        
-             java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new AdminPatientPage().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(AdminPatientPage.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-     
-    }
+//    public static void main(String args[]) {
+//        
+//             java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                try {
+//                    new AdminPatientPage().setVisible(true);
+//                } catch (IOException ex) {
+//                    Logger.getLogger(AdminPatientPage.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }
+//        });
+//     
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Edit;

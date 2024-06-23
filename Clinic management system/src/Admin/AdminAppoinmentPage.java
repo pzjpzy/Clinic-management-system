@@ -4,12 +4,14 @@
  */
 package Admin;
 
+import Patient.Appointment;
+import javax.swing.JFrame;
+
 /**
  *
  * @author User
  */
 public class AdminAppoinmentPage extends javax.swing.JFrame {
-
     /**
      * Creates new form AdminAppoinmentPage
      */
@@ -113,7 +115,7 @@ public class AdminAppoinmentPage extends javax.swing.JFrame {
 
         jLabel5.setText("Patient Name");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -156,14 +158,14 @@ public class AdminAppoinmentPage extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("jButton1");
+        jButton4.setText("Edit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("jButton1");
+        jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);

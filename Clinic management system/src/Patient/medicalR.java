@@ -4,6 +4,7 @@
  */
 package Patient;
 
+import Doctor.mrTablev2;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -89,12 +90,24 @@ public class medicalR extends JPanel{
         back.setFont(new Font("My Boli",Font.PLAIN,25));
         back.setFocusable(false);
         back.addActionListener((ActionEvent e)->{ // go to patientMenu
-        frame.remove(this);
+            System.out.println(user.role);
+            if("Patient".equals(user.role)){
+                frame.remove(this);
 
-        mrTable panel = new mrTable(frame);
-        frame.add(panel);
-        frame.revalidate();
-        frame.repaint();    
+                mrTable panel = new mrTable(frame);
+                frame.add(panel);
+                frame.revalidate();
+                frame.repaint();    
+            }
+            else if ("Doctor".equals(user.role)){
+                frame.remove(this);
+
+                mrTablev2 panel = new mrTablev2(frame);
+                frame.add(panel);
+                frame.revalidate();
+                frame.repaint();   
+            }
+        
         });
         
         JScrollPane scrollPane = new JScrollPane();

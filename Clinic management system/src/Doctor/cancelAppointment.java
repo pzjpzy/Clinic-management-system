@@ -48,7 +48,6 @@ public class cancelAppointment extends javax.swing.JPanel {
                 String values[] = line.split(",");
                 if(user.name.equals(values[0]) && date.equals(values[3])){
                     container.addRow(values);
-                    System.out.println(date);
                 }
                 
             }

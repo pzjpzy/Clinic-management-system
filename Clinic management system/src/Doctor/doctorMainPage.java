@@ -5,6 +5,7 @@
 package Doctor;
 
 import Patient.login;
+import Patient.user;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -15,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 /**
  *
@@ -38,7 +38,7 @@ public class doctorMainPage extends JPanel {
 
 
         JLabel label1 = new JLabel(); //welcome user
-        label1.setText("Welcome, Doctor");
+        label1.setText("Welcome, "+user.name);
         label1.setIcon(resizedIcon);
         label1.setOpaque(false);
         label1.setFont(new Font("My Boli",Font.PLAIN,30));
@@ -52,7 +52,7 @@ public class doctorMainPage extends JPanel {
 
         JPanel subban = new JPanel(); // box for welcome user
         subban.setBackground(new Color(92,201,205));
-        subban.setBounds(30,20,400,140);
+        subban.setBounds(30,20,500,140);
         subban.add(label1);
 
         JButton logout = new JButton(); //logout button

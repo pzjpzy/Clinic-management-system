@@ -88,7 +88,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
         blood = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         role = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        Edit = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -230,10 +230,10 @@ public class AdminPatientPage extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Edit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Edit.setText("Edit");
+        Edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EditActionPerformed(evt);
             }
         });
 
@@ -277,40 +277,37 @@ public class AdminPatientPage extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel12)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(FullName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(UserName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel14))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                    .addComponent(jLabel13)
-                                                    .addGap(123, 123, 123))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(pass, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(FullName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                            .addComponent(UserName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(50, 50, 50)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(gender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(icnum, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(icnum, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(49, 49, 49)
-                                                        .addComponent(jLabel17)
-                                                        .addGap(114, 114, 114)
-                                                        .addComponent(jButton2))
                                                     .addGroup(layout.createSequentialGroup()
                                                         .addGap(50, 50, 50)
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                            .addGroup(layout.createSequentialGroup()
-                                                                .addComponent(jLabel21)
-                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(jButton1))
                                                             .addComponent(blood, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                            .addGroup(layout.createSequentialGroup()
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                    .addComponent(role, 0, 150, Short.MAX_VALUE))
+                                                                .addGap(23, 23, 23)
+                                                                .addComponent(Edit))))
+                                                    .addGroup(layout.createSequentialGroup()
+                                                        .addGap(49, 49, 49)
+                                                        .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addGap(23, 23, 23)
+                                                        .addComponent(jButton2))))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(jLabel6)
@@ -371,7 +368,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
                             .addComponent(jLabel21)
-                            .addComponent(jButton1))
+                            .addComponent(Edit))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(icnum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,13 +412,76 @@ public class AdminPatientPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_phonenumberActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
+     
+        int row1 = jTable2.getSelectedRow();
+        
+        
+        String name = String.valueOf(container.getValueAt(row1, 0));
+        String username = String.valueOf(container.getValueAt(row1, 1));
+        String password = String.valueOf(container.getValueAt(row1, 2));
+        String gend = String.valueOf(container.getValueAt(row1, 3));
+        String ICNumber = String.valueOf(container.getValueAt(row1, 4));
+        String PhoneNumber = String.valueOf(container.getValueAt(row1, 5));
+        String BloodType = String.valueOf(container.getValueAt(row1, 6));
+        String Role = String.valueOf(container.getValueAt(row1, 7));
+        
+       String PatientData[] = {name, username, password, gend, String.valueOf(ICNumber),  String.valueOf(PhoneNumber), BloodType, Role } ;
+       container.removeRow(row1);
+       container.insertRow(row1,PatientData);
+       
+     try{
+
+         FileReader fr = new FileReader("PatientInformation.txt");
+            BufferedReader br  = new BufferedReader(fr);
+
+            String table[] = new String[100];
+            String line = null;
+            int row = 0;
+
+
+            while((line = br.readLine()) != null){
+                String values[] = line.split(",");
+                if(username == values[1]||ICNumber == values[4]){
+                    table [row] = name+","+username+","+  password+","+  gend+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+  BloodType+","+  Role + "\n" ;
+                }else{
+                    table [row] = line;
+                    
+                }
+                    row ++;
+            }
+            br.close();
+            fr.close();
+
+            FileWriter fw = new FileWriter("PatientInformation.txt");
+            String sentence = name+","+username+","+  password+","+  gend+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+  BloodType+","+  Role + "\n" ;
+
+            for(int i=0; i<row; i++){
+                if (table[i] != null){
+                    fw.append(table[i]+"\n");
+                }
+               
+            }
+
+
+            fw.close();
+        }catch(IOException ex) {
+                System.out.println("Some error occured");
+        }catch(NumberFormatException e){
+        
+        JOptionPane.showMessageDialog(this, "Please enter the correct data!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+     
+    
+    }//GEN-LAST:event_EditActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-    String name = FullName.getText();
+     if(FullName.getText().isEmpty()||UserName.getText().isEmpty()||pass.getText().isEmpty()||icnum.getText().isEmpty()||phonenumber.getText().isEmpty())
+        {
+        JOptionPane.showMessageDialog(this,"Missing Information");
+        
+        }else{
+     String name = FullName.getText();
      String username = UserName.getText();
      String password = pass.getText();
      String gend = (String)gender.getSelectedItem();
@@ -469,6 +529,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
             }
      String PatientData[] = {name, username, password, gend, String.valueOf(ICNumber),  String.valueOf(PhoneNumber), BloodType, Role } ;
        container.addRow(PatientData);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void FullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FullNameActionPerformed
@@ -484,11 +545,7 @@ public class AdminPatientPage extends javax.swing.JFrame {
     }//GEN-LAST:event_genderActionPerformed
 
     private void jTable2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseReleased
-        if(FullName.getText().isEmpty()||UserName.getText().isEmpty()||pass.getText().isEmpty()||icnum.getText().isEmpty()||phonenumber.getText().isEmpty())
-        {
-        JOptionPane.showMessageDialog(this,"Missing Information");
         
-        }else{
         try{
         int row = jTable2.getSelectedRow();
         
@@ -501,20 +558,17 @@ public class AdminPatientPage extends javax.swing.JFrame {
         String BloodType = String.valueOf(container.getValueAt(row, 6));
         String Role = String.valueOf(container.getValueAt(row, 7));
         
-        FullName.getText();
-        UserName.getText();
-        pass.getText();
-        gender.getSelectedItem();
-        icnum.getText();
-        phonenumber.getText();
-        blood.getSelectedItem();
-        role.getSelectedItem();
+        FullName.setText(name);
+        UserName.setText(username);
+        pass.setText(password);
+        icnum.setText(ICNumber);
+        phonenumber.setText(PhoneNumber);
 
             }catch(Exception Ex){
 
 
                 }
-            }
+            
         
     }//GEN-LAST:event_jTable2MouseReleased
     
@@ -537,12 +591,12 @@ public class AdminPatientPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Edit;
     private javax.swing.JTextField FullName;
     private javax.swing.JTextField UserName;
     private javax.swing.JComboBox<String> blood;
     private javax.swing.JComboBox<String> gender;
     private javax.swing.JTextField icnum;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;

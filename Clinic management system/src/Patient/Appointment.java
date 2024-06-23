@@ -29,10 +29,10 @@ public class Appointment extends JPanel {
             Image resizedUserImage1 = image1.getImage().getScaledInstance(50, 50, Image.SCALE_SMOOTH);
             ImageIcon homeImage = new ImageIcon(resizedUserImage1);
             ImageIcon image2 = new ImageIcon("src/Patient/cAppointment.png");
-            Image resizedUserImage2 = image2.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+            Image resizedUserImage2 = image2.getImage().getScaledInstance(175, 175, Image.SCALE_SMOOTH);
             ImageIcon apImage = new ImageIcon(resizedUserImage2);
             ImageIcon image3 = new ImageIcon("src/Patient/mAppointment.png");
-            Image resizedUserImage3 = image3.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);
+            Image resizedUserImage3 = image3.getImage().getScaledInstance(175, 175, Image.SCALE_SMOOTH);
             ImageIcon mrImage = new ImageIcon(resizedUserImage3);
         
                 
@@ -75,7 +75,7 @@ public class Appointment extends JPanel {
             appoint.setVerticalTextPosition(JButton.BOTTOM);
             appoint.setHorizontalTextPosition(JButton.CENTER);
             appoint.setIcon(apImage);
-            appoint.setBounds(300,150,400,400);
+            appoint.setBounds(300,230,370,250);
             appoint.setFont(new Font("My Boli",Font.PLAIN,25));
             appoint.setFocusable(false);
             appoint.setBackground(Color.white);
@@ -93,10 +93,20 @@ public class Appointment extends JPanel {
             mRecord.setVerticalTextPosition(JButton.BOTTOM);
             mRecord.setHorizontalTextPosition(JButton.CENTER);
             mRecord.setIcon(mrImage);
-            mRecord.setBounds(800,150,400,400);
+            mRecord.setBounds(830,230,370,250);
             mRecord.setFont(new Font("My Boli",Font.PLAIN,25));
             mRecord.setFocusable(false);
             mRecord.setBackground(Color.white);
+            
+            JButton payment = new JButton(); // button 3
+            payment.setText("Appointment History");
+            payment.setVerticalTextPosition(JButton.BOTTOM);
+            payment.setHorizontalTextPosition(JButton.CENTER);
+            payment.setIcon(mrImage);
+            payment.setBounds(550,515,370,250);
+            payment.setFont(new Font("My Boli",Font.PLAIN,25));
+            payment.setFocusable(false);
+            payment.setBackground(Color.white);
 
 
             JPanel banner = new JPanel(); //banner
@@ -108,7 +118,7 @@ public class Appointment extends JPanel {
 
             JPanel subbox = new JPanel();
             subbox.setBackground(new Color(162,229,221));
-            subbox.setBounds(200,50,1100,600);
+            subbox.setBounds(200,200,1100,600);
 
 
             JPanel box = new JPanel(); //below box
@@ -117,11 +127,12 @@ public class Appointment extends JPanel {
             box.add(subbox);
 
             JLayeredPane layer = new JLayeredPane();
-            layer.setBounds(0,150,1536,1000);
+            layer.setBounds(0,0,1536,1000);
             layer.add(box,Integer.valueOf(0));
             layer.add(subbox,Integer.valueOf(1));
             layer.add(appoint,Integer.valueOf(2));
             layer.add(mRecord,Integer.valueOf(3));
+            layer.add(payment,Integer.valueOf(3));
 
             add(banner);
             add(layer);

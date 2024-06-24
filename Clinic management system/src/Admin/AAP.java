@@ -343,7 +343,11 @@ public class AAP extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel10MouseReleased
 
     private void jLabel11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseReleased
-
+        payment panel = new payment(frame);
+        frame.remove(this);
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel11MouseReleased
 

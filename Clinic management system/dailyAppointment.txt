@@ -1,4 +1,6 @@
 bb,24-06-2024,false,false,false,false,false,false,false
-amin,23-06-2024,true,true,true,true,true,true,true
-abir,24-06-2024,true,true,false,true,true,true,true
-aa,24-06-2024,true,true,false,true,true,true,true
+amin,23-06-2024,false,false,false,true,true,true,true
+abir,24-06-2024,false,false,false,false,true,true,true
+aa,24-06-2024,false,false,false,false,false,false,false
+aa,25-06-2024,false,true,true,true,true,true,true
+amin,25-06-2024,false,false,false,true,true,true,true

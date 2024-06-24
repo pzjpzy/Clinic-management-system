@@ -23,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class doctorMainPage extends JPanel {
     public doctorMainPage(JFrame frame) {
-        ImageIcon image = new ImageIcon("src/Patient/patient.png");	
+        ImageIcon image = new ImageIcon("src/Doctor/doctor.png");	
         Image resizedUserImage = image.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon resizedIcon = new ImageIcon(resizedUserImage);
         ImageIcon image1 = new ImageIcon("src/Patient/logout.png");

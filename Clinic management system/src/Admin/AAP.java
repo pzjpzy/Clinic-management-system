@@ -11,8 +11,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,13 +23,70 @@ import javax.swing.JOptionPane;
  */
 public class AAP extends javax.swing.JPanel {
     JFrame frame;
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    LocalDateTime now = LocalDateTime.now();
+    String date = dtf.format(now);
+    String time;
+    
+    javax.swing.DefaultComboBoxModel doctorModel = new javax.swing.DefaultComboBoxModel();
+    javax.swing.DefaultComboBoxModel timeModel = new javax.swing.DefaultComboBoxModel();
+    private DefaultTableModel container = new DefaultTableModel();
+    
+    private String columnName[] = {"Doctor's name","Patient's name","Time slot"};
     /**
      * Creates new form AAP
      */
     public AAP(JFrame frame) {
         this.frame = frame;
+        container.setColumnIdentifiers(columnName);
         setBounds(0,0,1536,864);
         initComponents();
+        
+        try{
+        FileReader fr = new FileReader("dailyAppointment.txt");
+        BufferedReader br = new BufferedReader(fr);
+        //show all doctor
+        String line = null;
+        
+        while((line = br.readLine())!= null){
+ 
+            String values[] = line.split(",");
+            if(values[1].equals(date)){
+                doctorModel.addElement(values[0]);
+
+            }
+  
+        }
+
+        br.close();
+        fr.close();
+        
+        //show all appointment in table
+        fr = new FileReader("Appointment.txt");
+        br = new BufferedReader(fr);
+
+
+        line = null;
+
+        while((line = br.readLine())!= null){
+
+            String values[] = line.split(",");
+            if(values[3].equals(date)){
+                String tableRow[] = {values[0],values[1],values[2]};
+                container.addRow(tableRow);
+            }
+
+        }
+        fr.close();
+        br.close();
+        
+        
+        
+        
+        }catch(IOException e){
+            System.out.println("error");
+        }
+        
     }
 
     /**
@@ -46,19 +106,18 @@ public class AAP extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(153, 204, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -129,7 +188,7 @@ public class AAP extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(76, 76, 76)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGap(51, 51, 51)
                 .addComponent(jLabel7)
@@ -142,18 +201,11 @@ public class AAP extends javax.swing.JPanel {
                 .addGap(172, 172, 172))
         );
 
-        jButton1.setText("Add");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel15.setText("Doctor ");
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(doctorModel);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -161,58 +213,50 @@ public class AAP extends javax.swing.JPanel {
         });
 
         jComboBox3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(timeModel);
 
         jTable1.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Name", "Doctor", "Time Slot"
-            }
-        ));
+        jTable1.setModel(container);
         jTable1.setToolTipText("");
         jTable1.setRowHeight(40);
         jTable1.setRowMargin(10);
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
         jLabel21.setText("Appointment List");
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
-            }
-        });
-
-        jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 30)); // NOI18N
         jLabel18.setText("New Appointment");
-
-        jButton4.setText("Edit");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel17.setText("Time Slot");
 
-        jButton5.setText("Delete");
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Patient Name");
+
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+
+        jButton6.setBackground(new java.awt.Color(255, 204, 204));
+        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton6.setText("Refresh time slot");
+        jButton6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton6.setFocusable(false);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(204, 204, 255));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton5.setText("Make appointment");
+        jButton5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton5.setFocusable(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setText("Patient Name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -221,153 +265,64 @@ public class AAP extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18)
+                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton6)
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))
+                        .addGap(191, 191, 191))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(102, 102, 102)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(99, 438, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel21)
-                                                .addGap(78, 78, 78))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(149, 149, 149)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(15, 15, 15)))))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(136, 136, 136)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel17)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap(112, Short.MAX_VALUE))
+                                .addGap(38, 38, 38)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(455, 455, 455)
+                                .addComponent(jLabel21)))
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel18)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel21)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel18)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel17))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton6)
+                .addGap(29, 29, 29)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       if (user.disease != null){
-            try{
-                //update file content
-
-
-                FileReader fr = new FileReader("medicalrecord.txt");
-                BufferedReader br  = new BufferedReader(fr);
-
-                String table[] = new String[100];
-                String line = null;
-                int row = 0;
-
-
-                while((line = br.readLine()) != null){
-                    String values[] = line.split(",");
-
-
-                    if(user.disease.equals(values[2]) && user.medicine.equals(values[3]) && user.date.equals(values[5]) && user.followup.equals(values[7])){ //if got result
-                        //do nothing
-                    }else{
-                        table [row] = line;
-                        row ++;
-                    }
-
-
-
-                }
-                br.close();
-                fr.close();
-
-                FileWriter fw = new FileWriter("medicalrecord.txt");
-
-                for(int i=0; i<row; i++){
-                    if (table[i] != null){
-                        fw.append(table[i]+"\n");
-                    }
-                }
-
-
-                fw.close();
-            }catch(IOException e) {
-                    System.out.println("Some error occured");
-            }
-
-            mrTablev2 panel = new mrTablev2(frame);
-            frame.remove(this);
-            frame.add(panel);
-            frame.revalidate();
-            frame.repaint();
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"Please select medical record first.","Information",JOptionPane.INFORMATION_MESSAGE);
-        }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jLabel20MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseReleased
         login panel = new login(frame);
@@ -401,13 +356,285 @@ public class AAP extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel8MouseReleased
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       timeModel.removeAllElements();
+        container.setRowCount(0);
+        try{
+        FileReader fr = new FileReader("dailyAppointment.txt");
+        BufferedReader br = new BufferedReader(fr);
+        
+        //show all time slot
+        String line = null;
+        while((line = br.readLine())!= null){
+            
+            String values[] = line.split(",");
+            
+            if(jComboBox1.getSelectedItem().equals(values[0]) && date.equals(values[1])){
+                if(values[2].equals("true")){
+                    timeModel.addElement("9.00-10.00");
+                }
+                if(values[3].equals("true")){
+                    timeModel.addElement("10.00-11.00");
+                }
+                if(values[4].equals("true")){
+                    timeModel.addElement("11.00-12.00");
+                }
+                if(values[5].equals("true")){
+                    timeModel.addElement("12.00-1.00");
+                }
+                if(values[6].equals("true")){
+                    timeModel.addElement("2.00-3.00");
+                }
+                if(values[7].equals("true")){
+                    timeModel.addElement("3.00-4.00");;
+                }
+                if(values[8].equals("true")){
+                    timeModel.addElement("4.00-5.00");
+                }
+            }
+        }
+
+        br.close();
+        fr.close();
+        
+        //show all appointment in table
+        fr = new FileReader("Appointment.txt");
+        br = new BufferedReader(fr);
+        
+        
+        line = null;
+        
+        while((line = br.readLine())!= null){
+ 
+            String values[] = line.split(",");
+            if(values[3].equals(date) && values[0].equals(jComboBox1.getSelectedItem())){
+                String tableRow[] = {values[0],values[1],values[2]};
+                container.addRow(tableRow);
+            }
+  
+        }
+        fr.close();
+        br.close();
+        }catch(IOException e){
+            System.out.println("error");
+        }
+        
+//        frame.remove(this);
+//
+//        Atimeslot panel = new Atimeslot(frame);
+//        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        boolean emptyName = false;
+        if(jTextField1.getText().isEmpty()){
+            emptyName = true;        
+        }
+        time = String.valueOf(jComboBox3.getSelectedItem());
+        
+        if(emptyName == false){
+            if (time != null){
+                try{
+                    //add new appointment to text file
+
+                    FileReader fr = new FileReader("Appointment.txt");
+                    BufferedReader br  = new BufferedReader(fr);
+                    //
+                    String table[] = new String[100];
+                    String line = null;
+                    int row = 0;
+                    //
+                    while((line = br.readLine()) != null){
+                        String values[] = line.split(",");
+
+                        table [row] = line;
+                        row ++;
+
+                    }
+                    br.close();
+                    fr.close();
+
+                    FileWriter fw = new FileWriter("Appointment.txt");
+
+                    for(int i=0; i<row; i++){
+                        if (table[i] != null){
+                            fw.append(table[i]+"\n");
+                        }
+                    }
+
+                    String sentence = String.valueOf(jComboBox1.getSelectedItem())+","+jTextField1.getText()+","+time+","+date;
+                    fw.append(sentence);
+
+                    fw.close();
+
+                    //update doctor schedule availability
+                    fr = new FileReader("dailyAppointment.txt");
+                    br  = new BufferedReader(fr);
+
+                    table = new String[100];
+                    line = null;
+                    row = 0;
+
+                    while((line = br.readLine()) != null){
+                        String values[] = line.split(",");
+
+                        if(values[0].equals(jComboBox1.getSelectedItem())){
+                            if(time.equals("9.00-10.00")){
+                                values[2] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                            if(time.equals("10.00-11.00")){
+                                values[3] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                            if(time.equals("11.00-12.00")){
+                                values[4] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                            if(time.equals("12.00-1.00")){
+                                values[5] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                            if(time.equals("2.00-3.00")){
+                                values[6] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                            if(time.equals("3.00-4.00")){
+                                values[7] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                            if(time.equals("4.00-5.00")){
+                                values[8] = "false";
+                                table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                values[7]+","+values[8];
+                                row ++;
+                            }
+                        }
+                        else{
+                            table [row] = line;
+                            row ++;
+                        }
+                    }
+
+                    fr.close();
+                    br.close();
+
+                    fw = new FileWriter("dailyAppointment.txt");
+
+                    for(int i=0; i<row; i++){
+                        if (table[i] != null){
+                            fw.append(table[i]+"\n");
+                        }
+                    }
+
+                    fw.close();
+                }catch(IOException e) {
+                    System.out.println("Some error occured");
+                }
+
+
+                JOptionPane.showMessageDialog(null,"Succesfully made appointment.","Information",JOptionPane.INFORMATION_MESSAGE);
+                frame.revalidate();
+                frame.repaint();
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"Please select a time slot first.","Information",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Please enter patient's name.","Information",JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+
+        //refresh table
+        timeModel.removeAllElements();
+        container.setRowCount(0);
+        try{
+            FileReader fr = new FileReader("dailyAppointment.txt");
+            BufferedReader br = new BufferedReader(fr);
+
+            //show all time slot
+            String line = null;
+            while((line = br.readLine())!= null){
+
+                String values[] = line.split(",");
+
+                if(jComboBox1.getSelectedItem().equals(values[0]) && date.equals(values[1])){
+                    if(values[2].equals("true")){
+                        timeModel.addElement("9.00-10.00");
+                    }
+                    if(values[3].equals("true")){
+                        timeModel.addElement("10.00-11.00");
+                    }
+                    if(values[4].equals("true")){
+                        timeModel.addElement("11.00-12.00");
+                    }
+                    if(values[5].equals("true")){
+                        timeModel.addElement("12.00-1.00");
+                    }
+                    if(values[6].equals("true")){
+                        timeModel.addElement("2.00-3.00");
+                    }
+                    if(values[7].equals("true")){
+                        timeModel.addElement("3.00-4.00");
+                    }
+                    if(values[8].equals("true")){
+                        timeModel.addElement("4.00-5.00");
+                    }
+                }
+            }
+
+            br.close();
+            fr.close();
+            
+            //show all appointment in table
+            fr = new FileReader("Appointment.txt");
+            br = new BufferedReader(fr);
+
+
+            line = null;
+
+            while((line = br.readLine())!= null){
+
+                String values[] = line.split(",");
+                if(values[3].equals(date) && values[0].equals(jComboBox1.getSelectedItem())){
+                    String tableRow[] = {values[0],values[1],values[2]};
+                    container.addRow(tableRow);
+                }
+
+            }
+            fr.close();
+            br.close();
+            
+        }catch(IOException e){
+            System.out.println("error");
+        }
+
+
+        frame.revalidate();
+        frame.repaint();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -424,5 +651,6 @@ public class AAP extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

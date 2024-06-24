@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,8 +31,39 @@ public class dailySchedule extends javax.swing.JPanel {
     public dailySchedule(JFrame frame) {
         this.frame = frame;
         setBounds(0,0,1536,864);
-        
         initComponents();
+        
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDateTime now = LocalDateTime.now();
+        String date = dtf.format(now);
+        try{
+            //update file content
+            
+
+            FileReader fr = new FileReader("Appointment.txt");
+            BufferedReader br  = new BufferedReader(fr);
+
+            String table[] = new String[100];
+            String line = null;
+            int row = 0;
+            
+            
+            while((line = br.readLine()) != null){
+                String values[] = line.split(",");
+
+
+                if(user.name.equals(values[0]) && date.equals(values[3])){ //if got result
+                    JOptionPane.showMessageDialog(null,"There's appointment based on your previous schedule. Please cancel it to proceed.","Warning",JOptionPane.WARNING_MESSAGE);
+                    jButton1.setEnabled(false);
+                    break;
+                }
+            }
+            br.close();
+            fr.close();
+
+        }catch(IOException e) {
+                System.out.println("Some error occured");
+        }
     }
 
     /**
@@ -330,10 +362,9 @@ public class dailySchedule extends javax.swing.JPanel {
 
 
                 if(user.name.equals(values[0]) && date.equals(values[1])){ //if got result
-                    noresult = false;
+                    //do nothing
                     
                 }else{
-                    noresult = true;
                     table [row] = line;
                     row ++;
                 }
@@ -359,7 +390,7 @@ public class dailySchedule extends javax.swing.JPanel {
         }catch(IOException e) {
                 System.out.println("Some error occured");
         }
-        
+        JOptionPane.showMessageDialog(null,"Added new schedule successfully.","Information",JOptionPane.INFORMATION_MESSAGE);
         doctorMainPage panel = new doctorMainPage(frame);
         frame.remove(this);
         frame.add(panel);

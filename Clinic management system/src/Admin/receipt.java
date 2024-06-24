@@ -30,6 +30,13 @@ public class receipt extends JPanel{
     public receipt(JFrame frame){
         FileReader fr;
         JTextArea textArea = new JTextArea();
+        String z = "zanamivir" ;  //flu = 320.28;
+        String a = "acetaminophen";  //fever = 46.94;
+        String l = "loperamide";  //diarrhea = 56.56;
+        String p = "paracetamol";  //sore throat = 15.70;
+        String e = "esomeprazole";  //stomach acid = 61.27;
+        double service = 50.00;  //service cost 
+        double medicine = 0; // variable for medicine
         try {
             fr = new FileReader("medicalrecord.txt");
             BufferedReader br  = new BufferedReader(fr);
@@ -39,6 +46,17 @@ public class receipt extends JPanel{
                 String datarow[] = {values[0],values[2],values[3],values[5]};
                 if(user.name.equals(datarow[0]) && user.disease.equals(datarow[1]) && user.medicine.equals(datarow[2]) && user.date.equals(datarow[3])){
                     String ndatarow[] = {values[0],values[1],values[2],values[3],values[4],values[5],values[6],values[7]};
+                    if(z.equals(ndatarow[3].toLowerCase()))
+                        medicine = 320.28;
+                    else if(a.equals(ndatarow[3].toLowerCase()))
+                        medicine = 46.94;
+                    else if(l.equals(ndatarow[3].toLowerCase()))
+                        medicine = 56.56;
+                    else if(p.equals(ndatarow[3].toLowerCase()))
+                        medicine = 15.70;
+                    else if(e.equals(ndatarow[3].toLowerCase()))
+                        medicine = 61.27;
+                    double total = medicine + service;
                     textArea.setText(
                         "\n"+   
                         "       "+"Health Haven Clinic  "+"\n"+
@@ -48,11 +66,10 @@ public class receipt extends JPanel{
                         "\n"+   
                         "       "+"Cost "+"\n"+
                         "\n"+   
-                        "           "+"Service Cost : "+ndatarow[2]+"\n"+
-                        "           "+"Medicine : "+ndatarow[3]+"\n"+
-                        "           "+"Allergies : "+ndatarow[4]+"\n"+
+                        "           "+"Service Cost : RM"+service+"\n"+
+                        "           "+"Medicine : RM"+medicine+"\n"+
                         "\n"+   
-                        "       "+"Health Information  "+"\n"+
+                        "       "+"Total Cost :  RM"+total+"\n"+
                         "\n"
 
           
@@ -62,7 +79,7 @@ public class receipt extends JPanel{
             }
         } catch (FileNotFoundException ex) {
             System.out.println("file not found");
-        } catch (IOException e){
+        } catch (IOException et){
             System.out.println("error occured");
         }
 
@@ -86,10 +103,10 @@ public class receipt extends JPanel{
         back.setBounds(50,20,200,100);
         back.setFont(new Font("My Boli",Font.PLAIN,25));
         back.setFocusable(false);
-        back.addActionListener((ActionEvent e)->{ // go to patientMenu
+        back.addActionListener((ActionEvent ep)->{ // go to patientMenu
                 frame.remove(this);
 
-                AMR panel = new AMR(frame);
+                payment panel = new payment(frame);
                 frame.add(panel);
                 frame.revalidate();
                 frame.repaint();    

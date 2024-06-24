@@ -21,14 +21,13 @@ import javax.swing.table.DefaultTableModel;
  * @author pangz
  */
 public class cancelAppointmentV2 extends javax.swing.JPanel {
+    String time;
     JFrame frame;
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     LocalDateTime now = LocalDateTime.now();
     String date = dtf.format(now);
     
     String doctorName;
-    String patientName;
-    String timeSlot;
     String rowDate;
     private DefaultTableModel container = new DefaultTableModel();
     
@@ -156,8 +155,9 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
         int row  = jTable1.getSelectedRow();
         
         doctorName = String.valueOf(container.getValueAt(row,0));
-         timeSlot = String.valueOf(container.getValueAt(row,1));
+         time = String.valueOf(container.getValueAt(row,1));
          rowDate = String.valueOf(container.getValueAt(row,2));
+         
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -176,12 +176,10 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
 
                 while((line = br.readLine()) != null){
                     String values[] = line.split(",");
-                    
 
 
-                    if(doctorName.equals(values[0]) && timeSlot.equals(values[2]) && rowDate.equals(values[3])){ //if got result
+                    if(doctorName.equals(values[0]) && user.name.equals(values[1]) && time.equals(values[2]) && rowDate.equals(values[3])){ //if got result
                         //do nothing
-                        System.out.println("ok");
                         
                     }else{
                         table [row] = line;
@@ -204,10 +202,88 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
 
 
                 fw.close();
+                
+                
+                //update doctor schedule availability
+                fr = new FileReader("dailyAppointment.txt");
+                br  = new BufferedReader(fr);
+                
+                table = new String[100];
+                line = null;
+                row = 0;
+
+                while((line = br.readLine()) != null){
+                    String values[] = line.split(",");
+
+                    if(values[0].equals(doctorName)){
+                        System.out.println("hello");
+                        if(time.equals("9.00-10.00")){
+                            values[2] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                            System.out.println("hi");
+                        }
+                        if(time.equals("10.00-11.00")){
+                            values[3] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                        }
+                        if(time.equals("11.00-12.00")){
+                            values[4] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                        }
+                        if(time.equals("12.00-1.00")){
+                            values[5] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                        }
+                        if(time.equals("2.00-3.00")){
+                            values[6] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                        }
+                        if(time.equals("3.00-4.00")){
+                            values[7] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                        }
+                        if(time.equals("4.00-5.00")){
+                            values[8] = "true";
+                            table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
+                                    values[7]+","+values[8];
+                            row ++;
+                        }
+                    }
+                    else{
+                        table [row] = line;
+                        row ++;
+                    }
+                }
+                
+                fr.close();
+                br.close();
+                
+                
+                fw = new FileWriter("dailyAppointment.txt");
+
+                for(int i=0; i<row; i++){
+                    if (table[i] != null){
+                        fw.append(table[i]+"\n");
+                    }
+                }
+                
+                fw.close();
             }catch(IOException e) {
                     System.out.println("Some error occured");
             }
-
+            JOptionPane.showMessageDialog(null,"Appointment cancelled successfully.","Information",JOptionPane.INFORMATION_MESSAGE);
             cancelAppointmentV2 panel = new cancelAppointmentV2(frame);
             frame.remove(this);
             frame.add(panel);

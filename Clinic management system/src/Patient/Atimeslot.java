@@ -365,6 +365,73 @@ public class Atimeslot extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(null,"Please select a time slot first.","Information",JOptionPane.INFORMATION_MESSAGE);
         }
+        
+        //refresh table
+        timeModel.removeAllElements();
+        container.setRowCount(0);
+        try{
+        FileReader fr = new FileReader("dailyAppointment.txt");
+        BufferedReader br = new BufferedReader(fr);
+        
+        //show all time slot
+        String line = null;
+        while((line = br.readLine())!= null){
+            
+            String values[] = line.split(",");
+            
+            if(jComboBox1.getSelectedItem().equals(values[0]) && date.equals(values[1])){
+                if(values[2].equals("true")){
+                    timeModel.addElement("9.00-10.00");
+                    String timeslot[] = {"9.00-10.00"};
+                    container.addRow(timeslot);
+                }
+                if(values[3].equals("true")){
+                    timeModel.addElement("10.00-11.00");
+                    String timeslot[] = {"10.00-11.00"};
+                    container.addRow(timeslot);
+                }
+                if(values[4].equals("true")){
+                    timeModel.addElement("11.00-12.00");
+                    String timeslot[] = {"11.00-12.00"};
+                    container.addRow(timeslot);
+                }
+                if(values[5].equals("true")){
+                    timeModel.addElement("12.00-1.00");
+                    String timeslot[] = {"12.00-1.00"};
+                    container.addRow(timeslot);
+                }
+                if(values[6].equals("true")){
+                    timeModel.addElement("2.00-3.00");
+                    String timeslot[] = {"2.00-3.00"};
+                    container.addRow(timeslot);
+                }
+                if(values[7].equals("true")){
+                    timeModel.addElement("3.00-4.00");
+                    String timeslot[] = {"3.00-4.00"};
+                    container.addRow(timeslot);
+                }
+                if(values[8].equals("true")){
+                    timeModel.addElement("4.00-5.00");
+                    String timeslot[] = {"4.00-5.00"};
+                    container.addRow(timeslot);
+                }
+            }
+        }
+
+        br.close();
+        fr.close();
+        
+        
+        }catch(IOException e){
+            System.out.println("error");
+        }
+        
+//        frame.remove(this);
+//
+//        Atimeslot panel = new Atimeslot(frame);
+//        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

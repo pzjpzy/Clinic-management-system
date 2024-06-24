@@ -55,8 +55,6 @@ public class dailySchedule extends javax.swing.JPanel {
                 if(user.name.equals(values[0]) && date.equals(values[3])){ //if got result
                     JOptionPane.showMessageDialog(null,"There's appointment based on your previous schedule. Please cancel it to proceed.","Warning",JOptionPane.WARNING_MESSAGE);
                     jButton1.setEnabled(false);
-                    frame.revalidate();
-                    frame.repaint();
                     break;
                 }
             }

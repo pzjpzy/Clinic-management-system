@@ -143,6 +143,7 @@ public class AAP extends javax.swing.JPanel {
         );
 
         jButton1.setText("Add");
+        jButton1.setFocusable(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -195,6 +196,7 @@ public class AAP extends javax.swing.JPanel {
         jLabel18.setText("New Appointment");
 
         jButton4.setText("Edit");
+        jButton4.setFocusable(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -205,6 +207,7 @@ public class AAP extends javax.swing.JPanel {
         jLabel17.setText("Time Slot");
 
         jButton5.setText("Delete");
+        jButton5.setFocusable(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -388,7 +391,11 @@ public class AAP extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel10MouseReleased
 
     private void jLabel11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseReleased
-
+        payment panel = new payment(frame);
+        frame.remove(this);
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel11MouseReleased
 

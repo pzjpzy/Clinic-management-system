@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author pangz
  */
-public class AMR extends javax.swing.JPanel {
+public class payment extends javax.swing.JPanel {
     JFrame frame;
     private DefaultTableModel container = new DefaultTableModel();
-    private String columnName[] = {"Name","Disease","Medicine","Date","Follow-up Appointment"};
+    private String columnName[] = {"Name","Disease","Medicine","Date"};
     
-    public AMR(JFrame frame) {
+    public payment(JFrame frame) {
         this.frame = frame;
         container.setColumnIdentifiers(columnName);
         try{
@@ -36,7 +36,7 @@ public class AMR extends javax.swing.JPanel {
         while((line = br.readLine())!= null){
             String values[] = line.split(",");
 
-                String datarow[] = {values[0],values[2],values[3],values[5],values[7]};
+                String datarow[] = {values[0],values[2],values[3],values[5]};
                 container.addRow(datarow);            
         }
         br.close();
@@ -86,6 +86,11 @@ public class AMR extends javax.swing.JPanel {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel8.setText("Check Medical Record");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel8MouseReleased(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setText("Patient Information");
@@ -97,11 +102,6 @@ public class AMR extends javax.swing.JPanel {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel11.setText("Payment");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jLabel11MouseReleased(evt);
-            }
-        });
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel20.setText("Logout");
@@ -154,7 +154,7 @@ public class AMR extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Medical Record");
+        jLabel1.setText("Payment");
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTable1.setModel(container);
@@ -169,7 +169,7 @@ public class AMR extends javax.swing.JPanel {
 
         jButton2.setBackground(new java.awt.Color(162, 229, 221));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jButton2.setText("View out");
+        jButton2.setText("Print");
         jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setFocusable(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -241,15 +241,13 @@ public class AMR extends javax.swing.JPanel {
         user.disease = String.valueOf(container.getValueAt(row, 1));
         user.medicine = String.valueOf(container.getValueAt(row, 2));
         user.date = String.valueOf(container.getValueAt(row, 3));
-        user.followup = String.valueOf(container.getValueAt(row, 4));
-
     }//GEN-LAST:event_jTable1MouseReleased
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(user.date != null){
             frame.remove(this);
 
-            medicalR2 panel = new medicalR2(frame);
+            receipt panel = new receipt(frame);
             frame.add(panel);
             frame.revalidate();
             frame.repaint();
@@ -258,14 +256,14 @@ public class AMR extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jLabel11MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseReleased
-        payment panel = new payment(frame);
+    private void jLabel8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseReleased
+        AMR panel = new AMR(frame);
         frame.remove(this);
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
         // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel11MouseReleased
+    }//GEN-LAST:event_jLabel8MouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

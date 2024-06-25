@@ -11,6 +11,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -124,7 +126,7 @@ public class APP extends javax.swing.JPanel {
         });
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel10.setText("Patient Information");
+        jLabel10.setText("User Information");
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel11.setText("Payment");
@@ -184,7 +186,7 @@ public class APP extends javax.swing.JPanel {
         );
 
         jLabel18.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
-        jLabel18.setText("Patient Information");
+        jLabel18.setText("User Information");
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel13.setText("Username");
@@ -502,7 +504,6 @@ public class APP extends javax.swing.JPanel {
             boolean nameExist = false;
 
             try{
-
                 FileReader fr = new FileReader("logincredential.txt");
                 BufferedReader br  = new BufferedReader(fr);
 

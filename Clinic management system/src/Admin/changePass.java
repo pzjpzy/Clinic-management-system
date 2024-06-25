@@ -44,6 +44,8 @@ public class changePass extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         oldp = new javax.swing.JTextField();
         newp = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
 
         jButton1.setBackground(new java.awt.Color(162, 229, 221));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
@@ -95,6 +97,17 @@ public class changePass extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel6.setText("Username :");
+
+        username.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        username.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -108,11 +121,13 @@ public class changePass extends javax.swing.JPanel {
                         .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6))
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newp, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(oldp, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(oldp, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(94, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,15 +135,19 @@ public class changePass extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(56, 56, 56)
                 .addComponent(jLabel1)
-                .addGap(90, 90, 90)
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(oldp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newp)
-                    .addComponent(jLabel2))
-                .addGap(159, 159, 159))
+                    .addComponent(jLabel2)
+                    .addComponent(newp))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -156,7 +175,7 @@ public class changePass extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -170,13 +189,15 @@ public class changePass extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if( oldp.getText().isEmpty() && newp.getText().isEmpty())
+        if(username.getText().isEmpty() && oldp.getText().isEmpty() && newp.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this,"Missing Information");
 
         }else{
+            String Username = username.getText();
             String oldpass = oldp.getText();
             String newpass = newp.getText();
+            boolean error = true;
 
             try{
                 FileReader fr = new FileReader("logincredential.txt");
@@ -186,15 +207,18 @@ public class changePass extends javax.swing.JPanel {
                 int row = 0;
                 while((line = br.readLine()) != null){
                     String values[] = line.split(",");
-                    if(oldpass.equals(values[1])){
+                    if(Username.equals(values[0]) && oldpass.equals(values[1])){
                         values[1] = newpass;
                         table[row]=values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+values[7];
                         row++;
+                        error = false;
                     }else{
                         table[row]= line;
                         row++;
                     }
+
                 }
+
                 fr.close();
                 br.close();
 
@@ -207,11 +231,15 @@ public class changePass extends javax.swing.JPanel {
                 }
 
                 fw.close();
-
+                if(error == true)
+                    JOptionPane.showMessageDialog(this,"Wrong credentials (Username or Password)  ");
+                else {
+                    JOptionPane.showMessageDialog(this,"Changed Successfully ");
+                }
             }catch(Exception e){
 
             }
-            JOptionPane.showMessageDialog(this,"Changed Successfully ");
+
             
         }
         // TODO add your handling code here:
@@ -225,6 +253,10 @@ public class changePass extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_newpActionPerformed
 
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -232,8 +264,10 @@ public class changePass extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField newp;
     private javax.swing.JTextField oldp;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

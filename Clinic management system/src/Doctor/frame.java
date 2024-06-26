@@ -15,9 +15,8 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
  *
  * @author pangz
  */
-public class frame extends JFrame implements ActionListener {
+public class frame extends JFrame{
     public frame() {
-//        patientmenuPanel panel = new patientmenuPanel(this);
         login panel  = new login(this);
         
         setTitle("Clinic Management System");
@@ -27,23 +26,5 @@ public class frame extends JFrame implements ActionListener {
         setLayout(null);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         add(panel);
-
-        
-        
         }
-
-    @Override
-        public void actionPerformed(ActionEvent e) {
-//            if(e.getSource()==jButton1){
-//            // Remove all components from the content pane
-//            getContentPane().removeAll();
-//            //add all components back
-//            getContentPane().add(new doctorMainPage(this));
-//            // Revalidate and repaint to update the UI
-//            getContentPane().revalidate();
-//            getContentPane().repaint();
-//            }
-            
-        }
-        
    }

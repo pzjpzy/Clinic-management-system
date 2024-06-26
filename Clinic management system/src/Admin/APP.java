@@ -4,15 +4,15 @@
  */
 package Admin;
 
-
 import Patient.login;
 import Patient.user;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -59,7 +59,14 @@ public class APP extends javax.swing.JPanel {
         setBounds(0,0,1536,864);
         initComponents();
     }
-
+    public void checkDate(String date) throws DataException{
+        String Dob = DOB.getText();
+        String dateFormat = "dd-MM-yyyy";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+        LocalDate inputDate = LocalDate.parse(Dob,dtf);
+        if(String.valueOf(inputDate).equals(Dob))
+        System.out.println("hi");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -230,7 +237,7 @@ public class APP extends javax.swing.JPanel {
         });
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel19.setText("Phone Number");
+        jLabel19.setText("Phone Number (1234567)");
 
         phonenumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         phonenumber.addActionListener(new java.awt.event.ActionListener() {
@@ -303,7 +310,7 @@ public class APP extends javax.swing.JPanel {
         });
 
         dob.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        dob.setText("Date of Birth");
+        dob.setText("Date of Birth (dd-mm-yyyy)");
 
         DOB.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         DOB.addActionListener(new java.awt.event.ActionListener() {
@@ -341,14 +348,15 @@ public class APP extends javax.swing.JPanel {
                                             .addComponent(jLabel19)
                                             .addComponent(phonenumber, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(98, 98, 98)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(icnum, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                                            .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(DOB))
-                                        .addGap(67, 67, 67)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(icnum, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(DOB))
+                                            .addComponent(dob, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(39, 39, 39)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -493,6 +501,8 @@ public class APP extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Missing Information");
 
         }else{
+            String dateFormat = "dd-MM-yyyy";
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
             String username = UserName.getText();
             String password = pass.getText();
             String Role = (String)role.getSelectedItem();
@@ -504,13 +514,13 @@ public class APP extends javax.swing.JPanel {
             boolean nameExist = false;
 
             try{
+                LocalDate inputDate = LocalDate.parse(Dob,dtf);
                 FileReader fr = new FileReader("logincredential.txt");
                 BufferedReader br  = new BufferedReader(fr);
 
                 String table[] = new String[100];
                 String line = null;
                 int row = 0;
-
                 while((line = br.readLine()) != null){
                     String values[] = line.split(",");
                     if(username.equals(values[0])){
@@ -544,13 +554,18 @@ public class APP extends javax.swing.JPanel {
             }catch(IOException ex) {
                 System.out.println("Some error occured");
             }catch(NumberFormatException e){
-
                 JOptionPane.showMessageDialog(this, "Please enter the correct data!", "Error", JOptionPane.ERROR_MESSAGE);
+            }catch(DateTimeParseException exx){
+                JOptionPane.showMessageDialog(this, "Please enter the correct date format!", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
             
             
         }
+
+
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseReleased
@@ -763,4 +778,6 @@ public class APP extends javax.swing.JPanel {
     private javax.swing.JTextField phonenumber;
     private javax.swing.JComboBox<String> role;
     // End of variables declaration//GEN-END:variables
+
+
 }

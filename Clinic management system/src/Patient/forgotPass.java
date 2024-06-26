@@ -70,7 +70,7 @@ public class forgotPass extends javax.swing.JPanel {
         jLabel4.setText("IC Number :");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel5.setText("Old password :");
+        jLabel5.setText("New password :");
 
         ic.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         ic.setHorizontalAlignment(javax.swing.JTextField.LEFT);

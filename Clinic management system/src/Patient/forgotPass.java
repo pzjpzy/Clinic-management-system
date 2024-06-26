@@ -4,9 +4,9 @@
  */
 package Patient;
 
-import Admin.changePass;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -220,7 +220,8 @@ public class forgotPass extends javax.swing.JPanel {
     }//GEN-LAST:event_usernameActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(username.getText().isEmpty() && ic.getText().isEmpty() && oldp.getText().isEmpty())
+    boolean wrongcredential = true;
+    if(username.getText().isEmpty() || ic.getText().isEmpty() && oldp.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this,"Missing Information");
 
@@ -238,6 +239,7 @@ public class forgotPass extends javax.swing.JPanel {
                     String values[] = line.split(",");
                     if(Username.equals(values[0]) && IC.equals(values[3])){
                         oldp.setText(values[1]);
+                        wrongcredential = false;
                     }
                 }
                 fr.close();
@@ -245,10 +247,13 @@ public class forgotPass extends javax.swing.JPanel {
                 
 
 
-            }catch(Exception e){
+            }catch(IOException e){
             
             }
         }
+    if (wrongcredential == true){
+        JOptionPane.showMessageDialog(this,"Wrong credentials (Username or IC)  ");
+    }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

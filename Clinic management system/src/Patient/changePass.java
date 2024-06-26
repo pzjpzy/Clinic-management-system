@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package Admin;
+package Patient;
 
 import Patient.forgotPass;
 import java.io.BufferedReader;
@@ -189,7 +189,7 @@ public class changePass extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(username.getText().isEmpty() && oldp.getText().isEmpty() && newp.getText().isEmpty())
+        if(username.getText().isEmpty() || oldp.getText().isEmpty() || newp.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this,"Missing Information");
 

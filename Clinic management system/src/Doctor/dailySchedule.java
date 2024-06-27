@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
 public class dailySchedule extends javax.swing.JPanel {
     JFrame frame;
     boolean selectall = false;
-    boolean noresult;
     /**
      * Creates new form dailySchedule
      * @param frame
@@ -43,9 +42,7 @@ public class dailySchedule extends javax.swing.JPanel {
             FileReader fr = new FileReader("Appointment.txt");
             BufferedReader br  = new BufferedReader(fr);
 
-            String table[] = new String[100];
             String line = null;
-            int row = 0;
             
             
             while((line = br.readLine()) != null){

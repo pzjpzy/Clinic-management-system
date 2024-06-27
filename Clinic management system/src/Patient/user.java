@@ -42,9 +42,7 @@ public class user {
         user.medicine = medicine;
         user.date = date;
         user.followup = followup;
-        
-        
-        
+
     }
     
     static void display(){

@@ -580,7 +580,8 @@ public class APP extends javax.swing.JPanel {
      
         int row1 = jTable2.getSelectedRow();
         
-        
+        String dateFormat = "dd-MM-yyyy";
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
         String username = String.valueOf(container.getValueAt(row1, 0));
         String password = String.valueOf(container.getValueAt(row1, 1));
         String Role = String.valueOf(container.getValueAt(row1, 2));
@@ -590,13 +591,10 @@ public class APP extends javax.swing.JPanel {
         String gend = String.valueOf(container.getValueAt(row1, 6));
         String BloodType = String.valueOf(container.getValueAt(row1, 7));       
         
-       String PatientData[] = {UserName.getText(), pass.getText(), String.valueOf(role.getSelectedItem()), 
-           icnum.getText(),phonenumber.getText(),DOB.getText(), String.valueOf(gender.getSelectedItem()), String.valueOf(blood.getSelectedItem()) } ;
-       container.removeRow(row1);
-       container.insertRow(row1,PatientData);
+
        
      try{
-
+         LocalDate inputDate = LocalDate.parse(Dob,dtf);
          FileReader fr = new FileReader("logincredential.txt");
             BufferedReader br  = new BufferedReader(fr);
 
@@ -607,7 +605,7 @@ public class APP extends javax.swing.JPanel {
 
             while((line = br.readLine()) != null){
                 String values[] = line.split(",");
-                if(username.equals(values[1]) && ICNumber.equals(values[4])){
+                if(username.equals(values[0]) && ICNumber.equals(values[3])){
                     values[0] = UserName.getText();
                     values[1] = pass.getText();
                     values[2] = String.valueOf(role.getSelectedItem());    
@@ -618,7 +616,6 @@ public class APP extends javax.swing.JPanel {
                     values[7] = String.valueOf(blood.getSelectedItem());
                     
                     table [row] = values[0]+","+values[1]+","+  values[2]+","+values[3]+","+values[4]+","+ values[5]+","+values[6]+","+values[7];
-                    System.out.println("hi");
                 }else{
                     table [row] = line;
                     
@@ -629,7 +626,7 @@ public class APP extends javax.swing.JPanel {
             fr.close();
 
             FileWriter fw = new FileWriter("logincredential.txt");
-            String sentence = username+","+  password+","+  Role+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+","+Dob+  gend+","+  BloodType + "\n" ;
+            String sentence = username+","+  password +","+  Role+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+Dob +","+gend+","+  BloodType + "\n" ;
 
             for(int i=0; i<row; i++){
                 if (table[i] != null){
@@ -645,9 +642,17 @@ public class APP extends javax.swing.JPanel {
         }catch(NumberFormatException e){
         
         JOptionPane.showMessageDialog(this, "Please enter the correct data!", "Error", JOptionPane.ERROR_MESSAGE);
+            
+            }catch(DateTimeParseException exx){
+                JOptionPane.showMessageDialog(this, "Please enter the correct date format!", "Error", JOptionPane.ERROR_MESSAGE);
             }
      
-        
+     
+        APP panel = new APP(frame);
+        frame.remove(this);
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();   
         // TODO add your handling code here:
     }//GEN-LAST:event_EditActionPerformed
 

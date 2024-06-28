@@ -90,7 +90,7 @@ public class receipt extends JPanel{
         box1.setBounds(200,150,1125,700);
         
         JLabel label = new JLabel();
-        label.setText("Medical Record");
+        label.setText("Receipt");
         label.setOpaque(false);
         label.setFont(new Font("My Boli",Font.PLAIN,50));
         label.setBounds(575,50,400,50);

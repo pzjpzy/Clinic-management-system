@@ -244,46 +244,24 @@ public class Atimeslot extends javax.swing.JPanel {
             try{
                 //add new appointment to text file
 
-                FileReader fr = new FileReader("Appointment.txt");
-                BufferedReader br  = new BufferedReader(fr);
-//
-                String table[] = new String[100];
-                String line = null;
-                int row = 0;
-//
-                while((line = br.readLine()) != null){
-                    String values[] = line.split(",");
 
-                 
-                    table [row] = line;
-                    row ++;
+                FileWriter fw = new FileWriter("Appointment.txt",true);
 
-
-                }
-                br.close();
-                fr.close();
-
-                FileWriter fw = new FileWriter("Appointment.txt");
-
-                for(int i=0; i<row; i++){
-                    if (table[i] != null){
-                        fw.append(table[i]+"\n");
-                    }
-                }
+               
                 
-                String sentence = String.valueOf(jComboBox1.getSelectedItem())+","+user.name+","+time+","+date;
+                String sentence = String.valueOf(jComboBox1.getSelectedItem())+","+user.name+","+time+","+date+"\n";
                 fw.append(sentence);
 
                 fw.close();
                 
                 
                 //update doctor schedule availability
-                fr = new FileReader("dailyAppointment.txt");
-                br  = new BufferedReader(fr);
+                FileReader fr = new FileReader("dailyAppointment.txt");
+                BufferedReader br  = new BufferedReader(fr);
                 
-                table = new String[100];
-                line = null;
-                row = 0;
+                String table[] = new String[100];
+                String line = null;
+                int row = 0;
 
                 while((line = br.readLine()) != null){
                     String values[] = line.split(",");

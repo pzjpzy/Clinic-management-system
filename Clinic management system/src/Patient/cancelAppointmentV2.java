@@ -216,13 +216,11 @@ public class cancelAppointmentV2 extends javax.swing.JPanel {
                     String values[] = line.split(",");
 
                     if(values[0].equals(doctorName)){
-                        System.out.println("hello");
                         if(time.equals("9.00-10.00")){
                             values[2] = "true";
                             table [row] = values[0]+","+values[1]+","+values[2]+","+values[3]+","+values[4]+","+values[5]+","+values[6]+","+
                                     values[7]+","+values[8];
                             row ++;
-                            System.out.println("hi");
                         }
                         if(time.equals("10.00-11.00")){
                             values[3] = "true";

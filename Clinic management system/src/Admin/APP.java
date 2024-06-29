@@ -59,14 +59,7 @@ public class APP extends javax.swing.JPanel {
         setBounds(0,0,1536,864);
         initComponents();
     }
-    public void checkDate(String date) throws DataException{
-        String Dob = DOB.getText();
-        String dateFormat = "dd-MM-yyyy";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
-        LocalDate inputDate = LocalDate.parse(Dob,dtf);
-        if(String.valueOf(inputDate).equals(Dob))
-        System.out.println("hi");
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

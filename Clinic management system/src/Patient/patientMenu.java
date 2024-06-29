@@ -129,11 +129,6 @@ public class patientMenu extends JPanel{
                 layer.add(appoint,Integer.valueOf(2));
                 layer.add(mRecord,Integer.valueOf(3));
 		
-
-//		frame.setTitle("Patient Menu");
-//		frame.setVisible(true);
-//		frame.setResizable(false);
-//		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 add(banner);
                 add(layer);
 

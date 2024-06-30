@@ -489,24 +489,25 @@ public class APP extends javax.swing.JPanel {
     }//GEN-LAST:event_roleActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(UserName.getText().isEmpty() && pass.getText().isEmpty() && icnum.getText().isEmpty() && phonenumber.getText().isEmpty())
+        if(UserName.getText().isEmpty() || pass.getText().isEmpty() || icnum.getText().isEmpty() || phonenumber.getText().isEmpty())
         {
             JOptionPane.showMessageDialog(this,"Missing Information");
 
         }else{
-            String dateFormat = "dd-MM-yyyy";
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
-            String username = UserName.getText();
-            String password = pass.getText();
-            String Role = (String)role.getSelectedItem();
-            int ICNumber = Integer.parseInt(icnum.getText());
-            int PhoneNumber = Integer.parseInt(phonenumber.getText());
-            String Dob = DOB.getText();
-            String gend = (String)gender.getSelectedItem();
-            String BloodType = (String)blood.getSelectedItem();
-            boolean nameExist = false;
+            
 
             try{
+                String dateFormat = "dd-MM-yyyy";
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+                String username = UserName.getText();
+                String password = pass.getText();
+                String Role = (String)role.getSelectedItem();
+                int ICNumber = Integer.parseInt(icnum.getText());
+                int PhoneNumber = Integer.parseInt(phonenumber.getText());
+                String Dob = DOB.getText();
+                String gend = (String)gender.getSelectedItem();
+                String BloodType = (String)blood.getSelectedItem();
+                boolean nameExist = false;
                 LocalDate inputDate = LocalDate.parse(Dob,dtf);
                 FileReader fr = new FileReader("logincredential.txt");
                 BufferedReader br  = new BufferedReader(fr);
@@ -547,7 +548,7 @@ public class APP extends javax.swing.JPanel {
             }catch(IOException ex) {
                 System.out.println("Some error occured");
             }catch(NumberFormatException e){
-                JOptionPane.showMessageDialog(this, "Please enter the correct data!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Please enter correct data type within limit(9 characters)", "Error", JOptionPane.ERROR_MESSAGE);
             }catch(DateTimeParseException exx){
                 JOptionPane.showMessageDialog(this, "Please enter the correct date format!", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -572,75 +573,81 @@ public class APP extends javax.swing.JPanel {
     private void EditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditActionPerformed
      
         int row1 = jTable2.getSelectedRow();
-        
-        String dateFormat = "dd-MM-yyyy";
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
-        String username = String.valueOf(container.getValueAt(row1, 0));
-        String password = String.valueOf(container.getValueAt(row1, 1));
-        String Role = String.valueOf(container.getValueAt(row1, 2));
-        String ICNumber = String.valueOf(container.getValueAt(row1, 3));
-        String PhoneNumber = String.valueOf(container.getValueAt(row1, 4));
-        String Dob = String.valueOf(container.getValueAt(row1, 5));
-        String gend = String.valueOf(container.getValueAt(row1, 6));
-        String BloodType = String.valueOf(container.getValueAt(row1, 7));       
+          
         
 
-       
-     try{
-         LocalDate inputDate = LocalDate.parse(Dob,dtf);
-         FileReader fr = new FileReader("logincredential.txt");
-            BufferedReader br  = new BufferedReader(fr);
+ if(UserName.getText().isEmpty() || pass.getText().isEmpty() || icnum.getText().isEmpty() || phonenumber.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this,"Missing Information");
 
-            String table[] = new String[100];
-            String line = null;
-            int row = 0;
+        }else{      
+            try{
 
+               String dateFormat = "dd-MM-yyyy";
+               DateTimeFormatter dtf = DateTimeFormatter.ofPattern(dateFormat);
+               String username = String.valueOf(container.getValueAt(row1, 0));
+               String password = String.valueOf(container.getValueAt(row1, 1));
+               String Role = String.valueOf(container.getValueAt(row1, 2));
+               int ICNum = Integer.parseInt(icnum.getText());
+               int PhoneNum = Integer.parseInt(phonenumber.getText());
+               String ICNumber = String.valueOf(container.getValueAt(row1, 3));
+               String PhoneNumber = String.valueOf(container.getValueAt(row1, 4));
+               String Dob = String.valueOf(container.getValueAt(row1, 5));
+               String gend = String.valueOf(container.getValueAt(row1, 6));
+               String BloodType = String.valueOf(container.getValueAt(row1, 7));     
+                LocalDate inputDate = LocalDate.parse(DOB.getText(),dtf);
 
-            while((line = br.readLine()) != null){
-                String values[] = line.split(",");
-                if(username.equals(values[0]) && ICNumber.equals(values[3])){
-                    values[0] = UserName.getText();
-                    values[1] = pass.getText();
-                    values[2] = String.valueOf(role.getSelectedItem());    
-                    values[3] = icnum.getText();
-                    values[4] = phonenumber.getText();
-                    values[5] = DOB.getText();
-                    values[6] = String.valueOf(gender.getSelectedItem());
-                    values[7] = String.valueOf(blood.getSelectedItem());
-                    
-                    table [row] = values[0]+","+values[1]+","+  values[2]+","+values[3]+","+values[4]+","+ values[5]+","+values[6]+","+values[7];
-                }else{
-                    table [row] = line;
-                    
-                }
-                    row ++;
-            }
-            br.close();
-            fr.close();
+                FileReader fr = new FileReader("logincredential.txt");
+                   BufferedReader br  = new BufferedReader(fr);
 
-            FileWriter fw = new FileWriter("logincredential.txt");
-            String sentence = username+","+  password +","+  Role+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+Dob +","+gend+","+  BloodType + "\n" ;
-
-            for(int i=0; i<row; i++){
-                if (table[i] != null){
-                    fw.append(table[i]+"\n");
-                }
-               
-            }
+                   String table[] = new String[100];
+                   String line = null;
+                   int row = 0;
 
 
-            fw.close();
-        }catch(IOException ex) {
-                System.out.println("Some error occured");
-        }catch(NumberFormatException e){
-        
-        JOptionPane.showMessageDialog(this, "Please enter the correct data!", "Error", JOptionPane.ERROR_MESSAGE);
-            
-            }catch(DateTimeParseException exx){
-                JOptionPane.showMessageDialog(this, "Please enter the correct date format!", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                   while((line = br.readLine()) != null){
+                       String values[] = line.split(",");
+                       if(username.equals(values[0]) && ICNumber.equals(values[3])){
+                           values[0] = UserName.getText();
+                           values[1] = pass.getText();
+                           values[2] = String.valueOf(role.getSelectedItem());    
+                           values[3] = icnum.getText();
+                           values[4] = phonenumber.getText();
+                           values[5] = DOB.getText();
+                           values[6] = String.valueOf(gender.getSelectedItem());
+                           values[7] = String.valueOf(blood.getSelectedItem());
+
+                           table [row] = values[0]+","+values[1]+","+  values[2]+","+values[3]+","+values[4]+","+ values[5]+","+values[6]+","+values[7];
+                       }else{
+                           table [row] = line;
+
+                       }
+                           row ++;
+                   }
+                   br.close();
+                   fr.close();
+
+                   FileWriter fw = new FileWriter("logincredential.txt");
+                   String sentence = username+","+  password +","+  Role+","+  String.valueOf(ICNumber)+","+  String.valueOf(PhoneNumber)+","+Dob +","+gend+","+  BloodType + "\n" ;
+
+                   for(int i=0; i<row; i++){
+                       if (table[i] != null){
+                           fw.append(table[i]+"\n");
+                       }
+
+                   }
+
+
+                   fw.close();
+               }catch(IOException ex) {
+                       System.out.println("Some error occured");
+               }catch(NumberFormatException e){
+               JOptionPane.showMessageDialog(this, "Please enter correct data type within limit(9 characters)", "Error", JOptionPane.ERROR_MESSAGE);   
+               }catch(DateTimeParseException exx){
+                   JOptionPane.showMessageDialog(this, "Please enter the correct date format!", "Error", JOptionPane.ERROR_MESSAGE);
+               }
      
-     
+        } 
         APP panel = new APP(frame);
         frame.remove(this);
         frame.add(panel);

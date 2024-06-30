@@ -100,14 +100,15 @@ public class medicalR2 extends JPanel{
         
         });
         
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        
 
         textArea.setFont(new Font("My Boli",Font.PLAIN,40));
         textArea.setBounds(200,150,1125,700);
         textArea.setBorder(new LineBorder(Color.BLACK));
         textArea.setEditable(true);
         
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scrollPane.setBounds(200,150,1125,700);
         scrollPane.getViewport().setBackground(Color.white);
         scrollPane.getViewport().add(textArea);

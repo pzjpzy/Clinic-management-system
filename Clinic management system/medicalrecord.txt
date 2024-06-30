@@ -4,5 +4,4 @@ b,029384921923,Sore Throat,Paracetamol,none,21-06-2024,BP 118/72 ~ HR 92,1 month
 lee,019293140448,Fever,Acetaminophen,dog,21-06-2024,192/168,2 Months
 Pang Zai Jie,020399481773,Diarrhea,Loperamide,None,23-06-2024,192/76,1 Year
 aa,aa,aa,aa,aa,23-06-2024,aa,aa
-aa,a,a,a,a,23-06-2024,a,a
 aikyen,1234566,Sore Throat,Paracetamol,prawn,26-06-2024,legs,1 months later

@@ -702,7 +702,7 @@ public class APP extends javax.swing.JPanel {
                     String values[] = line.split(",");
 
 
-                    if(username.equals(values[0]) && password.equals(values[1]) && Role.equals(values[2]) && ICNumber.equals(values[3]) && PhoneNumber.equals(values[4]) && Dob.equals(values[5]) && gend.equals(values[6]) && BloodType.equals(values[7])){ //if got result
+                    if(username.equals(values[0]) && password.equals(values[1]) && Role.equals(values[2])){ //if got result
                         //do nothing
                     }else{
                         table [row] = line;
